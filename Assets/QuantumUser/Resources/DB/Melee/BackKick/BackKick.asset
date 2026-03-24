@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02f0708b8994f7daabdfa03a41084ed, type: 3}
+  m_Name: BackKick
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Melee/BackKick/BackKick
+    Guid:
+      Value: 365815988562160515
+  attackData:
+    animationName: BackKick
+    hardPunchType: 0
+    hardKickType: 2
+    startFrame:
+      RawValue: 6554
+    endFrame:
+      RawValue: 65536
+    hitBoxFrame:
+      RawValue: 29491
+    priorityFrame:
+      RawValue: 0
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 1966080
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 1966080
+    hitTime:
+      RawValue: 65536
+    hitCrossFadeTime:
+      RawValue: 0
+    hitReactionName: 12
+    knockDown: 0
+    knockDownRecoveryTime:
+      RawValue: 0
+    blockHitReactionName: 0
+    damageAmount: 7
+    staminaAmount: 10
+    hitStopTimeAttacker:
+      RawValue: 3277
+    hitStopTimeVictim:
+      RawValue: 4588
+    hitBox:
+      Id:
+        Value: 1351601759910073106
+    attackType: 2
+    hitBoxType: 0
+    hitType: 0

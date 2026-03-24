@@ -1,0 +1,22 @@
+input
+{
+	ushort Flags;
+	Byte EncodedMovementDirection;
+    Byte EncodedLookDirection;
+    byte InterpolationOffset;
+    byte InterpolationAlphaEncoded;
+        
+    FP DeltaPitch;
+    FP DeltaYaw;
+    
+    FP VerticalAxis;
+    
+    FPVector3 CameraPosition;
+    
+    FPVector3 RootPosition;
+    FPVector3 RootPositionVictim;
+       
+    int PowerUpType;
+    
+    int PlayerPing;
+}

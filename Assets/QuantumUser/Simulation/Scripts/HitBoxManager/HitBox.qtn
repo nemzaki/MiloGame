@@ -1,0 +1,62 @@
+component HitBox
+{
+    [ExcludeFromPrototype]
+    Boolean IsActive;
+    [ExcludeFromPrototype]
+    Boolean IsHitBox;
+    [ExcludeFromPrototype]
+    Boolean IsBlockBox;
+    
+    [ExcludeFromPrototype]
+    EntityRef SourceEntity;
+    [ExcludeFromPrototype]
+    int CurrentHitType;
+    [ExcludeFromPrototype]
+    FP destroyTimer;
+    [ExcludeFromPrototype]
+    Boolean AlreadyHit; 
+    
+    [ExcludeFromPrototype]
+    FPVector3 HitForce;
+    
+    [ExcludeFromPrototype]
+    FP GotHitTime; 
+    
+    [ExcludeFromPrototype]
+    Boolean KnockDown;
+    [ExcludeFromPrototype]
+    FP RecoveryTime;
+    
+    [ExcludeFromPrototype]
+    QString<64> HitReactionName;
+    [ExcludeFromPrototype]
+    QString<64> BlockReactionName;
+    [ExcludeFromPrototype]
+    FP HitCrossFadeTime;
+    
+    [ExcludeFromPrototype]
+    QString<64>EnemyBodyPartToHit;
+    [ExcludeFromPrototype]
+    QString<64> BodyPartToHit;
+    [ExcludeFromPrototype]
+    QString<64> BodyPartToBlockHit;
+    [ExcludeFromPrototype]
+    FP HitStopTimeAttacker;
+    [ExcludeFromPrototype]
+    FP HitStopTimeVictim; 
+    [ExcludeFromPrototype]
+    int DamageAmount;
+    [ExcludeFromPrototype]
+    int StaminaAmount;
+    [ExcludeFromPrototype]
+    QString<64> AttackTypeInfo;
+    
+    [ExcludeFromPrototype]
+    Boolean ShowHitFX;
+    
+    [ExcludeFromPrototype]
+    QString<32> HitType;
+    
+    [ExcludeFromPrototype]
+    int currentWeaponID;
+}

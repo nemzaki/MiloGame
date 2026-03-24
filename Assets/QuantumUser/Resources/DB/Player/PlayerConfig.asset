@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3040cc4d627349668772b4e68b35b1d9, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Player/PlayerConfig
+    Guid:
+      Value: 289459963869191228
+  aimPosStart:
+    X:
+      RawValue: 0
+    Y:
+      RawValue: 65536
+    Z:
+      RawValue: 0
+  comboCooldownDuration:
+    RawValue: 32768
+  crouchHitBox:
+    hitBoxSpawnPos:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 32768
+      Z:
+        RawValue: 0
+    hitBoxOffset:
+      RawValue: 65536
+    hitBoxForwardOffset:
+      RawValue: 32768
+  highHitBox:
+    hitBoxSpawnPos:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 78643
+      Z:
+        RawValue: 0
+    hitBoxOffset:
+      RawValue: 65536
+    hitBoxForwardOffset:
+      RawValue: 32768
+  midHitBox:
+    hitBoxSpawnPos:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 65536
+      Z:
+        RawValue: 0
+    hitBoxOffset:
+      RawValue: 65536
+    hitBoxForwardOffset:
+      RawValue: 32768
+  lowHitBox:
+    hitBoxSpawnPos:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 13107
+      Z:
+        RawValue: 0
+    hitBoxOffset:
+      RawValue: 65536
+    hitBoxForwardOffset:
+      RawValue: 32768
+  blockHitBox:
+    hitBoxSpawnPos:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 0
+    hitBoxOffset:
+      RawValue: 0
+    hitBoxForwardOffset:
+      RawValue: 0
+  dodgeForce: 120
+  dodgeDuration:
+    RawValue: 65536
+  curveAmount:
+    RawValue: 16384
+  roamDodgeForce: 200
+  dodgeDurationRoam:
+    RawValue: 49152
+  canDodgeAvoidHitTime:
+    RawValue: 32768
+  dashForce: 80
+  dashDuration:
+    RawValue: 32768
+  blockBox:
+    Id:
+      Value: 1351601759910073106
+  startingHealth: 100
+  maxHealth: 100
+  maxStamina: 100
+  staminaRecoveryRate:
+    RawValue: 1310720
+  autoSprintRange:
+    RawValue: 196608
+  freeFlowRange: 2
+  rotationSpeed: 10
+  normalSpeed: 5
+  sprintSpeed: 15
+  jumpForce:
+    RawValue: 655360
+  attractionStrength:
+    RawValue: 19660800
+  groundAcceleration:
+    RawValue: 3604480
+  groundDeceleration:
+    RawValue: 1638400
+  airAcceleration:
+    RawValue: 1638400
+  airDeceleration:
+    RawValue: 85197
+  hitWallTime:
+    RawValue: 65536
+  hitForce:
+    RawValue: 655360
+  timeToKnockDownRecover:
+    RawValue: 19661
+  timeToGroundRecover:
+    RawValue: 32768
+  isStrafingRange:
+    RawValue: 1310720
+  capsuleHeightStanding:
+    RawValue: 42598
+  capsuleCenterStanding:
+    RawValue: 64225
+  capsuleHeightCrouching:
+    RawValue: 16384
+  capsuleCenterCrouching:
+    RawValue: 39322
+  maxCamDistance:
+    RawValue: 327680
+  minRotValue:
+    RawValue: -3604480
+  maxRotValue:
+    RawValue: 0

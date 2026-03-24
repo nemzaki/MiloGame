@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb191ff512bd4213aac4e0850c87470f, type: 3}
+  m_Name: FightStyle1
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/FightStyles/FightStyle1
+    Guid:
+      Value: 413773136031283789
+  fightStyle: 1
+  punchComboSystem:
+  - Id:
+      Value: 435612254242641247
+  - Id:
+      Value: 532358684233785174
+  - Id:
+      Value: 306885051658629756
+  kickComboSystem:
+  - Id:
+      Value: 286768263296246078
+  - Id:
+      Value: 418262360816737212
+  - Id:
+      Value: 438877804744756878

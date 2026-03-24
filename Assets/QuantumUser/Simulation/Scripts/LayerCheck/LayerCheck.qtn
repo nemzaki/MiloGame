@@ -1,0 +1,4 @@
+component LayerCheck
+{
+    QString<64> CheckTag;
+}

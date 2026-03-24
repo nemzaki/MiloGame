@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8347f8a325a487b8948b534bd4e0ffc, type: 3}
+  m_Name: OutRangeDecision
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/AI/StreetFight2D/OutRangeDecision
+    Guid:
+      Value: 299380784759720089
+  aiDecisions:
+  - aiState: 0
+    chance:
+      RawValue: 1310720
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 196608
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 0
+  - aiState: 2
+    chance:
+      RawValue: 2621440
+    actionTimeMin:
+      RawValue: 131072
+    actionTimeMax:
+      RawValue: 327680
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 2
+  - aiState: 12
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 65536
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0
+  - aiState: 16
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 65536
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0

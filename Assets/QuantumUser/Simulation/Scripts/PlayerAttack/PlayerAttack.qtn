@@ -1,0 +1,288 @@
+component PlayerAttack
+{   
+    asset_ref<PlayerConfig> playerConfig;
+    LayerMask HitMask; 
+  
+    //[ExcludeFromPrototype]
+    list<int> AttackComboList;
+    //[ExcludeFromPrototype]
+    list<int> KickComboList;
+      
+    //
+    //[ExcludeFromPrototype] 
+    //int aiPlayerIndex;
+    //
+    [ExcludeFromPrototype]
+    int currentFrame;
+    [ExcludeFromPrototype]
+    Boolean isAttacking;
+    [ExcludeFromPrototype]
+    FP IdleType;
+    [ExcludeFromPrototype]
+    Boolean didAttack;
+    [ExcludeFromPrototype]
+    ComboType CurrentComboType;
+    [ExcludeFromPrototype]
+    ComboType QueuedComboType;
+    [ExcludeFromPrototype]
+    Boolean HardAttack;
+    [ExcludeFromPrototype]
+    Boolean QueueHardAttack;
+    [ExcludeFromPrototype]
+    Boolean ResetComboRequest;
+    [ExcludeFromPrototype]
+    Boolean QueueComboChange;
+    [ExcludeFromPrototype]
+    Boolean DidCrouchAttack;
+    [ExcludeFromPrototype]
+    Boolean ForwardUpAttackAtStart;
+    [ExcludeFromPrototype]
+    Boolean BackAttackAtStart;
+    
+    [ExcludeFromPrototype]
+    Boolean QueueSweepKick;
+     
+    [ExcludeFromPrototype]
+    Boolean NoStamina;
+    
+    [ExcludeFromPrototype]
+    Boolean comboQueued;
+    [ExcludeFromPrototype]
+    Boolean hitBoxTriggered;
+    [ExcludeFromPrototype]
+    Boolean blockBoxTriggered;
+    
+    [ExcludeFromPrototype]
+    int currentComboIndex;
+    [ExcludeFromPrototype]
+    int currentComboIncrement;
+    
+    [ExcludeFromPrototype]
+    FPVector3 AttackMoveForce;
+    [ExcludeFromPrototype]
+    FPVector3 HitMoveForce;
+    [ExcludeFromPrototype]
+    FP ComboResetTimer;
+    
+    [ExcludeFromPrototype]
+    Boolean DidMeleeAttack;
+    [ExcludeFromPrototype]
+    FP MeleeAttackTimer;
+    [ExcludeFromPrototype]
+    int AttackStartFrame;
+    
+    //Hit
+    [ExcludeFromPrototype]
+    Boolean GotHit;
+    [ExcludeFromPrototype]
+    FP GotHitTimer;
+    [ExcludeFromPrototype]
+    int HitReactionID;
+     
+    //Block
+    [ExcludeFromPrototype]
+    Boolean IsBlocking;
+    
+    //Finisher
+    [ExcludeFromPrototype]
+    EntityRef finisherVictimEntity;
+    
+    //Knock Down
+    [ExcludeFromPrototype]
+    Boolean KnockDown;
+    [ExcludeFromPrototype]
+    Boolean InRecovery;
+    [ExcludeFromPrototype]
+    FP RecoveryTimer;
+    [ExcludeFromPrototype]
+    FP RecoveryTime;
+    [ExcludeFromPrototype]
+    Boolean HitWall;
+    [ExcludeFromPrototype]
+    FP HitWallTimer;
+    
+    //Hard Attack
+    [ExcludeFromPrototype]
+    int HardPunchType;
+    [ExcludeFromPrototype]
+    int HardKickType;
+    
+    [ExcludeFromPrototype]
+    Boolean IsBackAttacking;
+    [ExcludeFromPrototype]
+    Boolean IsForwardUpAttacking;
+    [ExcludeFromPrototype]
+    Boolean IsSweepKicking;
+    
+    [ExcludeFromPrototype]
+    Boolean HitStop;
+    [ExcludeFromPrototype]
+    FP HitStopTime;
+    [ExcludeFromPrototype]
+    FP HitStopTimer;
+    
+    [ExcludeFromPrototype]
+    FP startFrame;
+    [ExcludeFromPrototype]
+    FP endFrame;
+    [ExcludeFromPrototype]
+    FP hitBoxFrame;
+    [ExcludeFromPrototype]
+    FP PriorityFrame;
+    
+    [ExcludeFromPrototype] 
+    Boolean updateAttackSequence;
+    [ExcludeFromPrototype]
+    Boolean getAttackData;
+    [ExcludeFromPrototype]
+    asset_ref<NormalAttackConfig> NormalAttack;
+    
+    [ExcludeFromPrototype] 
+    Boolean NoDamageAttack;
+    
+    //ATTACK COOLDOWN
+    [ExcludeFromPrototype]
+    int currentComboLength;
+    [ExcludeFromPrototype]
+    Boolean IsCoolingDown;
+    [ExcludeFromPrototype]
+    FP IsCoolingDownTimer;
+    
+    [ExcludeFromPrototype]
+    ComboEntryType QueuedComboEntry;
+}
+
+enum DodgeDir
+{
+    None,
+    Forward,
+    Back,
+    Left,
+    Right,
+    ForwardUp,
+    ForwardDown,
+    BackUp,
+    BackDown, 
+    Up,
+    Down
+}
+
+enum ComboType
+{
+    None,
+    Punch, 
+    Kick,
+    PunchHard,
+    KickHard,
+    SweepKick
+}
+
+enum ComboEntryType
+{
+    Normal,
+    SweepKick
+}
+
+event PickUpItem
+{
+    EntityRef PlayerEntity;
+    int itemID;
+}
+
+event MeleeAttack
+{
+    EntityRef PlayerEntity;
+    int attackType;
+}
+
+event KickMeleeAttack
+{
+    EntityRef PlayerEntity;
+    int attackType;
+}
+
+event DidFinish
+{
+    EntityRef PlayerEntity;
+    QString<64> FinisherName;
+}
+
+event GetsFinished
+{
+    EntityRef PlayerEntity;   
+    QString<64> FinisherName; 
+}
+
+event Dodge
+{
+    EntityRef PlayerEntity;
+}
+
+event PlayerHit
+{
+    EntityRef PlayerEntity;
+    EntityRef SourceEntity;
+    QString<64> HitReactionName;
+    FP crossFadeTime;
+}
+
+event AttackName
+{
+    EntityRef PlayerEntity;
+    QString<64> ActionName;
+}
+event BlockHit
+{
+    EntityRef PlayerEntity;
+    EntityRef SourceEntity;
+    QString<64> BlockReactionName;
+}
+
+event GetRootMotionPos
+{   
+    EntityRef AttackerEntity;
+    EntityRef VictimEntity;
+}
+
+event PlayerSwingClip
+{
+    EntityRef PlayerEntity;
+}
+
+event PlayerHitClip
+{
+    EntityRef PlayerEntity;
+}
+
+event PlayerBlockClip
+{
+    EntityRef PlayerEntity;
+}
+
+event PlayerHitFX
+{
+    EntityRef PlayerEntity;
+    FPVector3 HitPos;
+    QString<32> HitType;
+}
+
+event PlayerDodge
+{
+    EntityRef Entity;
+    QString<16> Direction;
+}
+
+event NoStamina
+{
+    EntityRef PlayerEntity;
+}
+
+event HitWall
+{
+    EntityRef PlayerEntity;
+}
+
+event SuccessfullyDodge
+{
+    EntityRef PlayerEntity;
+}

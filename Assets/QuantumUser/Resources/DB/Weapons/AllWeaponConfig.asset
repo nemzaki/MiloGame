@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d0e4a24dff4e049a6cd2451d94866b, type: 3}
+  m_Name: AllWeaponConfig
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Weapons/AllWeaponConfig
+    Guid:
+      Value: 298985578767312642
+  hitBox:
+    Id:
+      Value: 1351601759910073106
+  grabAttackType: 404
+  grabData:
+    hardPunchType: 0
+    hardKickType: 0
+    startFrame:
+      RawValue: 0
+    endFrame:
+      RawValue: 0
+    hitBoxFrame:
+      RawValue: 9830
+    priorityFrame:
+      RawValue: 0
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 0
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 0
+    hitTime:
+      RawValue: 65536
+    hitCrossFadeTime:
+      RawValue: 65536
+    hitReactionName: 0
+    knockDown: 0
+    knockDownRecoveryTime:
+      RawValue: 0
+    blockHitReactionName: 0
+    damageAmount: 0
+    staminaAmount: 0
+    hitStopTime:
+      RawValue: 0
+    hitBox:
+      Id:
+        Value: 0
+    attackType: 0
+    hitBoxType: 0
+    hitType: 0
+  playerSkinMax: 3
+  introMax: 2
+  celebrateMax: 2
+  weaponData:
+  - Id:
+      Value: 485527287745762938

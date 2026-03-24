@@ -1,0 +1,141 @@
+component AIPlayer
+{
+    asset_ref<AIConfig> aiConfig;
+    asset_ref<AIConfig> aiConfigFreeRoam;
+    
+    [ExcludeFromPrototype]
+    Boolean IsActive;
+    [ExcludeFromPrototype]
+    QString<64> AIName;
+    [ExcludeFromPrototype]
+    int AIIdleType;
+    [ExcludeFromPrototype]
+    int AIHardKickType;
+    [ExcludeFromPrototype]
+    int AIHardPunchType;
+    
+    [ExcludeFromPrototype]
+    EntityRef TargetEnemy;
+    
+    [ExcludeFromPrototype]
+    Boolean CanAttack;
+    [ExcludeFromPrototype]
+    Boolean CanKick;
+    [ExcludeFromPrototype]
+    Boolean CanHardAttack;
+    [ExcludeFromPrototype]
+    Boolean CanHardKick;
+    [ExcludeFromPrototype]
+    Boolean IsBlocking;
+    [ExcludeFromPrototype]
+    Boolean AIDodge;
+    [ExcludeFromPrototype]
+    FP AttackTimer;
+  
+    [ExcludeFromPrototype]
+    Boolean CanDodge;
+    
+    [ExcludeFromPrototype]
+    AIRange aiRange;
+    [ExcludeFromPrototype]
+    AIRange previousRange; 
+    [ExcludeFromPrototype]
+    AIBehaviorType aiBehaviour;
+    [ExcludeFromPrototype]
+    AIContext aiContext;
+    [ExcludeFromPrototype]
+    AIState aiState;
+      
+    [ExcludeFromPrototype]
+    FPVector3 AiMoveDirection;
+    
+    [ExcludeFromPrototype]
+    FP DecisionTimer;
+    [ExcludeFromPrototype]
+    FP DecisionDuration;
+    
+    [ExcludeFromPrototype]
+    FP GettingHitTimer;
+    [ExcludeFromPrototype]
+    Boolean GettingSpammed;
+    [ExcludeFromPrototype]
+    FP HyperAwareTimer;
+    
+    [ExcludeFromPrototype]
+    FP PunchAttackTimer;
+    [ExcludeFromPrototype]
+    FP KickAttackTimer;
+    [ExcludeFromPrototype]
+    FP HardPunchAttackTimer;
+    [ExcludeFromPrototype]
+    FP HardKickAttackTimer;
+    
+    [ExcludeFromPrototype]
+    Boolean IsCoolingDown;
+    [ExcludeFromPrototype] 
+    FP CoolDownTimer;
+    [ExcludeFromPrototype]
+    FP CoolDownDuration;
+    
+    [ExcludeFromPrototype]
+    Boolean DashingForward;
+    [ExcludeFromPrototype]
+    Boolean DashingBack;
+    
+    [ExcludeFromPrototype]
+    AIState LastActionState;
+    [ExcludeFromPrototype]
+    int ActionRepeatCount;
+}
+
+enum AIRange
+{
+    InRange,
+    OutRange,
+}
+
+enum AIBehaviorType
+{   
+    Aggressive,
+    Defensive,
+    Countering,
+    Zoning,
+    Retreating,
+    Waiting
+}
+
+struct AIContext
+{
+    FP targetHealth;
+    FP distanceToTarget;
+    FP aggressionLevel;
+    bool targetIsAttacking;
+    bool isCornered;
+    bool hasStamina;
+}
+
+enum AIState
+{
+    Idle,
+    Taunting,
+    MovingForward,
+    MovingBack,
+    Retreating,
+    PunchAttacking,
+    KickAttacking,
+    BackPunch,
+    BackKick,
+    HardPunching,
+    HardKicking,
+    Blocking,
+    DodgingForwardUp,
+    DodgeBackUp,
+    DodgingForwardDown,
+    DodgingBackDown,
+    DashForward,
+    DashBack,
+    RoamDodgeForward,
+    RoamDodgeBack,
+    RoamDodgeLeft,
+    RoamDodgeRight,
+}

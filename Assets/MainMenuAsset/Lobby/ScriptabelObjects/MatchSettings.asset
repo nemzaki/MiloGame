@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdaeb6bd1aa545f3a82b701d0520bae, type: 3}
+  m_Name: MatchSettings
+  m_EditorClassIdentifier: 
+  gameMaps:
+  - mapAsset: {fileID: 11400000, guid: 9611e85696d2441619be812c553ab4b2, type: 2}
+    mapName: RESTAURANT
+    mapDescription: Battle
+  - mapAsset: {fileID: 11400000, guid: 094c96f686a7f4055bc1be1c5e0c852a, type: 2}
+    mapName: TRAP
+    mapDescription: Battle
+  - mapAsset: {fileID: 11400000, guid: 19c3d677761e94a83abbbd459ca7b9b7, type: 2}
+    mapName: VEGAS
+    mapDescription: Battle
+  - mapAsset: {fileID: 11400000, guid: e1dbbf626dde64d149418cfdf9a1565b, type: 2}
+    mapName: CLUB
+    mapDescription: Battle
+  - mapAsset: {fileID: 11400000, guid: 0edd1e9d2e5464ec5810d9cb4b118a20, type: 2}
+    mapName: ROAM
+    mapDescription: Battle

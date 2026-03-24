@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02f0708b8994f7daabdfa03a41084ed, type: 3}
+  m_Name: HardKickRight
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Melee/HardKick/HardKickRight
+    Guid:
+      Value: 275716639753417888
+  attackData:
+    animationName: KickHard 2
+    hardPunchType: 0
+    hardKickType: 1
+    startFrame:
+      RawValue: 6554
+    endFrame:
+      RawValue: 52429
+    hitBoxFrame:
+      RawValue: 30802
+    priorityFrame:
+      RawValue: 0
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 1310720
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 11468800
+    hitTime:
+      RawValue: 39322
+    hitCrossFadeTime:
+      RawValue: 0
+    hitReactionName: 15
+    knockDown: 1
+    knockDownRecoveryTime:
+      RawValue: 131072
+    blockHitReactionName: 0
+    damageAmount: 9
+    staminaAmount: 20
+    hitStopTimeAttacker:
+      RawValue: 6554
+    hitStopTimeVictim:
+      RawValue: 9175
+    hitBox:
+      Id:
+        Value: 1351601759910073106
+    attackType: 3
+    hitBoxType: 0
+    hitType: 2

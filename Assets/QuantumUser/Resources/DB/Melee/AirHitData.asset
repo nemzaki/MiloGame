@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02f0708b8994f7daabdfa03a41084ed, type: 3}
+  m_Name: AirHitData
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Melee/AirHitData
+    Guid:
+      Value: 495800751180968899
+  attackData:
+    hardPunchType: 0
+    hardKickType: 2
+    startFrame:
+      RawValue: 6554
+    endFrame:
+      RawValue: 45875
+    hitBoxFrame:
+      RawValue: 36045
+    priorityFrame:
+      RawValue: 0
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 1310720
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 3276800
+    hitTime:
+      RawValue: 32768
+    hitCrossFadeTime:
+      RawValue: 0
+    hitReactionName: 10
+    knockDown: 1
+    knockDownRecoveryTime:
+      RawValue: 65536
+    blockHitReactionName: 0
+    damageAmount: 0
+    staminaAmount: 0
+    hitStopTime:
+      RawValue: 0
+    hitBox:
+      Id:
+        Value: 0
+    attackType: 0
+    hitBoxType: 0
+    hitType: 0

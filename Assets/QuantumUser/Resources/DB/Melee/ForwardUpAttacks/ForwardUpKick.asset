@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02f0708b8994f7daabdfa03a41084ed, type: 3}
+  m_Name: ForwardUpKick
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Melee/ForwardUpAttacks/ForwardUpKick
+    Guid:
+      Value: 503775847431122286
+  attackData:
+    animationName: ForwardUpKick
+    hardPunchType: 0
+    hardKickType: 2
+    startFrame:
+      RawValue: 6554
+    endFrame:
+      RawValue: 65536
+    hitBoxFrame:
+      RawValue: 32768
+    priorityFrame:
+      RawValue: 6554
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 3276800
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 13107200
+    hitTime:
+      RawValue: 49152
+    hitCrossFadeTime:
+      RawValue: 0
+    hitReactionName: 15
+    knockDown: 1
+    knockDownRecoveryTime:
+      RawValue: 98304
+    blockHitReactionName: 0
+    damageAmount: 7
+    staminaAmount: 20
+    hitStopTimeAttacker:
+      RawValue: 6554
+    hitStopTimeVictim:
+      RawValue: 9175
+    hitBox:
+      Id:
+        Value: 1351601759910073106
+    attackType: 3
+    hitBoxType: 1
+    hitType: 1

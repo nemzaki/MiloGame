@@ -1,0 +1,104 @@
+#define PLAYER_COUNT 20
+#pragma max_players PLAYER_COUNT
+
+asset PickUpRandomConfig;
+
+singleton component Gameplay
+{ 	
+    asset_ref<AllWeaponsConfig> allWeaponsConfig;
+    asset_ref<GameConfig> gameConfig;
+    
+	list<EntityRef> StartPositions;
+    list<EntityRef> RevivePositions;
+
+	EGameplayState State;
+	ERoundState RoundState;
+	ERoundEndReason RoundEndReason;
+	
+	[ExcludeFromPrototype]
+	FP RoundTimer;
+	[ExcludeFromPrototype]
+	FP InGameMatchTime;
+	[ExcludeFromPrototype]
+	FP StateTime;
+	
+	[ExcludeFromPrototype]
+	int TotalPlayers;
+	
+	[ExcludeFromPrototype]
+	Boolean SpawnAI;
+	
+	[ExcludeFromPrototype]
+	int CurrentRound;
+		
+	[ExcludeFromPrototype]
+	Boolean CanFight;
+	[ExcludeFromPrototype]
+	Boolean InitiateFight;
+    [ExcludeFromPrototype]
+    Boolean ResettingRound;
+  	
+	[ExcludeFromPrototype]
+	Boolean SuddenDeath;
+	
+	[ExcludeFromPrototype]
+	Boolean SuddenDeathResolved;
+	
+	[ExcludeFromPrototype]
+	EntityRef WinnerEntity;
+	[ExcludeFromPrototype]
+	EntityRef DisconnectedEntity; 
+	
+	[ExcludeFromPrototype]
+	Boolean DisconnectionResolved;
+	
+	//CAMERA WORK
+	[ExcludeFromPrototype]
+	Boolean InCloseCombat;
+	
+	[ExcludeFromPrototype]
+	Boolean AvoidSlowMo;
+	[ExcludeFromPrototype]
+	FP AvoidSlowMoTimer;
+}
+
+enum EGameplayState
+{
+	None,
+	Waiting,
+	Start,
+	InProgress,
+	Finished,
+}
+
+enum ERoundState
+{
+	None,
+	Intro,
+	Active,
+	End, 
+	Reset
+}
+
+enum ERoundEndReason
+{
+    TimeOut, 
+    KO
+}
+
+synced event MatchFinished
+{
+}
+
+synced event RoundOver
+{
+}
+
+synced event PrepareRound
+{
+}
+
+synced event StartNewRound
+{
+    int CurrentRound;
+}

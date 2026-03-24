@@ -1,0 +1,12 @@
+component PlayerInfo
+{
+    [ExcludeFromPrototype] 
+    QString<32> PlayerName;
+    [ExcludeFromPrototype] 
+    int Kills;
+}
+
+event PlayerLeave
+{
+    EntityRef entity;
+}

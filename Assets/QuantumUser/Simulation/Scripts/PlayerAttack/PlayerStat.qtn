@@ -1,0 +1,76 @@
+component PlayerStat
+{
+    [ExcludeFromPrototype]
+    QString<64> PlayerName;
+    [ExcludeFromPrototype]
+    int PlayerHealth;
+    [ExcludeFromPrototype]
+    FP PlayerStamina;
+    
+    [ExcludeFromPrototype]
+    FP StaminaRegainTimer;
+    
+    [ExcludeFromPrototype]
+    FP gotHitTime;
+     
+    [ExcludeFromPrototype]
+    Boolean IsAiming;
+         
+    [ExcludeFromPrototype]
+    int PlayerNumber;
+    [ExcludeFromPrototype]
+    Boolean IsDead;
+    [ExcludeFromPrototype]
+    Boolean ShowCelebration;
+    [ExcludeFromPrototype]
+    FP ShowCelebrateTimer; 
+    [ExcludeFromPrototype]
+    int RoundsWon;
+      
+    [ExcludeFromPrototype]
+    Boolean Won;
+    [ExcludeFromPrototype]
+    Boolean Disconnected;
+       
+    [ExcludeFromPrototype]
+    Boolean ShowedIntro;
+    [ExcludeFromPrototype]
+    FP ShowIntroTimer;
+    
+    [ExcludeFromPrototype]
+    Boolean GetData;
+    [ExcludeFromPrototype]
+    int currentWeaponID;
+    [ExcludeFromPrototype]
+    int MoveType;
+    [ExcludeFromPrototype]
+    int playerSkinIndex;
+    [ExcludeFromPrototype]
+    int CelebrateType;
+    [ExcludeFromPrototype]
+    int HitCounter;
+    [ExcludeFromPrototype]
+    FP HitCounterTimer;
+    
+    [ExcludeFromPrototype]
+    int PunchAmount;
+    [ExcludeFromPrototype]
+    int KickAmount;
+    [ExcludeFromPrototype]
+    int PunchHardAmount;
+    [ExcludeFromPrototype]
+    int KickHardAmount;
+    
+    [ExcludeFromPrototype]
+    Boolean BadPing;
+    
+    [ExcludeFromPrototype]
+    Boolean TechnicalVictory;
+    [ExcludeFromPrototype]
+    Boolean TechnicalDefeat;
+}
+
+event Dead
+{
+    EntityRef PlayerEntity;
+}

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02f0708b8994f7daabdfa03a41084ed, type: 3}
+  m_Name: 2-HighKickRight
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Melee/Kicks/2-HighKickRight
+    Guid:
+      Value: 438877804744756878
+  attackData:
+    animationName: HighKickRight 2
+    hardPunchType: 0
+    hardKickType: 0
+    startFrame:
+      RawValue: 6554
+    endFrame:
+      RawValue: 29491
+    hitBoxFrame:
+      RawValue: 13107
+    priorityFrame:
+      RawValue: 0
+    actionMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 655360
+    hitMoveForce:
+      X:
+        RawValue: 0
+      Y:
+        RawValue: 0
+      Z:
+        RawValue: 983040
+    hitTime:
+      RawValue: 65536
+    hitCrossFadeTime:
+      RawValue: 0
+    hitReactionName: 2
+    knockDown: 0
+    knockDownRecoveryTime:
+      RawValue: 0
+    blockHitReactionName: 0
+    damageAmount: 5
+    staminaAmount: 10
+    hitStopTimeAttacker:
+      RawValue: 4588
+    hitStopTimeVictim:
+      RawValue: 6554
+    hitBox:
+      Id:
+        Value: 1351601759910073106
+    attackType: 2
+    hitBoxType: 0
+    hitType: 0

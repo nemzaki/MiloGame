@@ -1,0 +1,154 @@
+component PlayerMovement
+{
+    [ExcludeFromPrototype] 
+    player_ref PlayerRef;
+    
+    [ExcludeFromPrototype] 
+    EntityRef MyEntity;
+   
+    [ExcludeFromPrototype]
+    int SpawnIndex;
+    
+    [ExcludeFromPrototype]
+    FP MoveState;
+       
+    [ExcludeFromPrototype]
+    Boolean IsCrouching;
+      
+    [ExcludeFromPrototype] 
+    Boolean UsingIK;
+       
+    [ExcludeFromPrototype] 
+    FP HitReactTimer;
+    
+    [ExcludeFromPrototype]
+    InputDesires InputDesires;
+    
+    [ExcludeFromPrototype]
+    Boolean Grounded;
+    
+    [ExcludeFromPrototype]
+    Boolean Sprinting;
+    
+    [ExcludeFromPrototype]
+    FP Speed;
+    
+    [ExcludeFromPrototype]
+    InputDesires InputDesires;
+    
+    [ExcludeFromPrototype]
+    FPVector3 TargetAimDir;
+    
+    [ExcludeFromPrototype]
+    Boolean StopMove;
+    
+    [ExcludeFromPrototype]
+    EPlayerType PlayerType;
+    
+    [ExcludeFromPrototype]
+    EntityRef ClosestTarget;
+    
+    [ExcludeFromPrototype]
+    FPVector3 MoveDirection; 
+
+    [ExcludeFromPrototype]
+    Boolean isFacingRight;
+    
+    [ExcludeFromPrototype]
+    FP DodgeRunning;
+    
+    [ExcludeFromPrototype]
+    FP FightStanceRange;
+     
+    [ExcludeFromPrototype]
+    Boolean StopMovement;
+    [ExcludeFromPrototype]
+    Boolean CanRagdoll;
+    [ExcludeFromPrototype]
+    Boolean InRagdollTimer;
+    
+    [ExcludeFromPrototype]
+    FP CamViewRotPos;
+    
+    //DODGE
+    [ExcludeFromPrototype]
+    QString<16> CardinalDirection;
+    [ExcludeFromPrototype]
+    FPVector3 DodgeDirection;
+    [ExcludeFromPrototype]
+    Boolean IsDodging;
+    [ExcludeFromPrototype]
+    FP IsDodgingTimer;
+    [ExcludeFromPrototype]
+    Boolean CanDodgeAvoidHit;
+    [ExcludeFromPrototype]
+    FP CanDodgeAvoidHitTimer;
+    
+    //RUNNING
+    [ExcludeFromPrototype]
+    FP RunningSpeed;
+    
+    //DASH
+    [ExcludeFromPrototype]
+    Boolean IsDashing;
+    [ExcludeFromPrototype]
+    FP IsDashingTimer;
+    
+    [ExcludeFromPrototype]
+    FP DodgeDuration;
+       
+    [ExcludeFromPrototype]
+    Boolean InFightStance;
+    [ExcludeFromPrototype]
+    FP FightStanceTimer;
+    
+    [ExcludeFromPrototype]
+    Boolean DashForward;
+    [ExcludeFromPrototype]
+    Boolean DashBack;
+
+    [ExcludeFromPrototype]
+    DodgeDir CurrentDodgeDir;
+}
+
+struct InputDesires
+{
+	ushort Flags;
+	FPVector2 MoveDirection;
+	FPVector2 LookDirection;
+	byte InterpolationOffset;
+    byte InterpolationAlphaEncoded;
+        
+    FP VerticalAxis;
+    
+	FP DeltaPitch;
+    FP DeltaYaw;
+       
+    FPVector3 CameraPosition;
+    FPVector3 RootPosition;
+    FPVector3 RootPositionVictim;
+        
+    int PlayerPing;
+}
+
+enum EPlayerType : Byte
+{
+	None = 0,
+	Player = 1,
+	AI = 2,
+}
+
+enum DodgeDir
+{
+	None,
+	Left,
+	Right,
+	Forward,
+	Back,
+	Up,
+	Down,
+	ForwardUp,
+	ForwardDown,
+	BackUp,
+	BackDown
+}

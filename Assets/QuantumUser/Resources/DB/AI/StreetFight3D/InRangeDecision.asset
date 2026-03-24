@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8347f8a325a487b8948b534bd4e0ffc, type: 3}
+  m_Name: InRangeDecision
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/AI/StreetFight3D/InRangeDecision
+    Guid:
+      Value: 517075473910057317
+  aiDecisions:
+  - aiState: 0
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 262144
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 0
+  - aiState: 5
+    chance:
+      RawValue: 1966080
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 196608
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 1
+  - aiState: 6
+    chance:
+      RawValue: 1966080
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 196608
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 1
+  - aiState: 9
+    chance:
+      RawValue: 1310720
+    actionTimeMin:
+      RawValue: 32768
+    actionTimeMax:
+      RawValue: 32768
+    coolDownTime:
+      RawValue: 65536
+    repeatAmount: 1
+  - aiState: 11
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 65536
+    actionTimeMax:
+      RawValue: 196608
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 2
+  - aiState: 10
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 32768
+    actionTimeMax:
+      RawValue: 32768
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0
+  - aiState: 19
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 32768
+    actionTimeMax:
+      RawValue: 32768
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0
+  - aiState: 20
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 32768
+    actionTimeMax:
+      RawValue: 32768
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0
+  - aiState: 21
+    chance:
+      RawValue: 655360
+    actionTimeMin:
+      RawValue: 32768
+    actionTimeMax:
+      RawValue: 32768
+    coolDownTime:
+      RawValue: 0
+    repeatAmount: 0

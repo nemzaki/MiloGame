@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd84536f4c947a39af88d8ff823a004, type: 3}
+  m_Name: NoWeapon
+  m_EditorClassIdentifier: 
+  Identifier:
+    Path: QuantumUser/Resources/DB/Weapons/NoWeapon
+    Guid:
+      Value: 485527287745762938
+  weaponID: 0
+  useIK: 0
+  melee: 1
+  moveStateAiming:
+    RawValue: 65536
+  moveStateRelax:
+    RawValue: 65536
+  meleeType: 0
+  impulseForce:
+    RawValue: 1966
+  attacks:
+  - Id:
+      Value: 488037771649156338
+  - Id:
+      Value: 394804721828556993
+  - Id:
+      Value: 473749785175565580
+  - Id:
+      Value: 359245829945035287
+  - Id:
+      Value: 300035233428858071
+  - Id:
+      Value: 380424257898025113
+  - Id:
+      Value: 527031042488959406
+  - Id:
+      Value: 306885051658629756
+  - Id:
+      Value: 427897417471569793
+  - Id:
+      Value: 471122930581563900
+  - Id:
+      Value: 466965395788833964
+  kicks:
+  - Id:
+      Value: 483957081294350893
+  - Id:
+      Value: 292441820605153111
+  - Id:
+      Value: 371139684404246432
+  - Id:
+      Value: 537119104550929293
+  - Id:
+      Value: 330237432582515606
+  - Id:
+      Value: 487745036749123087
+  - Id:
+      Value: 478181573791851577
+  jumpPunchAttacks:
+  - Id:
+      Value: 394778823424716731
+  jumpKickAttacks:
+  - Id:
+      Value: 374207553132691557
+  hardAttacks:
+  - Id:
+      Value: 301218175674412799
+  forwardUpAttacks:
+  - Id:
+      Value: 387945132314205801
+  forwardUpKicks:
+  - Id:
+      Value: 503775847431122286
+  hardKickAttacks:
+  - Id:
+      Value: 275716639753417888
+  - Id:
+      Value: 269229350298508496
+  lowPunchAttack:
+  - Id:
+      Value: 380424257898025113
+  lowKickAttack:
+  - Id:
+      Value: 507353798483655087
+  punchBackAttacks:
+  - Id:
+      Value: 373300810998300470
+  kickBackAttacks:
+  - Id:
+      Value: 365815988562160515
+  crouchHitData:
+    Id:
+      Value: 375516839369747049
+  airHitData:
+    Id:
+      Value: 495800751180968899
+  sweepKickData:
+    Id:
+      Value: 509187443240677362
