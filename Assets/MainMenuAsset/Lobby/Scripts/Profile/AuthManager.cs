@@ -121,11 +121,9 @@ public class AuthManager : MonoBehaviour
             
             mainMenuHandler.connectionScreen.SetActive(false);
             
-            // Shows how to get a playerID
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
-
-            // Shows how to get an access token
-            Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+#endif
             isInitialized = true;
         };
 

@@ -138,8 +138,8 @@ public class AppleSignInHandler : MonoBehaviour
             
             //CLEAR LOCAL DATA
             await SignUp.Instance.UpdateCloudData();
-            
-            SaveDataLocal.Instance.appleIDToken = Token;
+            // Store a flag only — never the actual identity token
+            SaveDataLocal.Instance.appleIDToken = "linked";
         }
         catch (AuthenticationException ex)
         {
@@ -163,7 +163,8 @@ public class AppleSignInHandler : MonoBehaviour
             //CLEAR LOCAL DATA
             convertingAccountPanel.SetActive(false);
             await SignUp.Instance.UpdateCloudData();
-            SaveDataLocal.Instance.appleIDToken = Token;
+            // Store a flag only — never the actual identity token
+            SaveDataLocal.Instance.appleIDToken = "linked";
         }
         catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
         {

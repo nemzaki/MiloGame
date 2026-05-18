@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using Unity.Cinemachine.Samples;
+//using Unity.Cinemachine.Samples;
 
 [ExecuteAlways]
 public class AimCamera : CinemachineCameraManagerBase

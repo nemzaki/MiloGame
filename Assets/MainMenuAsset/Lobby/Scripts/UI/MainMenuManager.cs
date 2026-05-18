@@ -31,7 +31,8 @@ public class MainMenuManager : MonoBehaviour
                 break;
             
             default:
-                throw new ArgumentOutOfRangeException();
+                // Editor on Windows / Linux — no platform-specific sign-in buttons needed
+                break;
         }
     }
   

@@ -48,6 +48,15 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
     public bool onStartGame;
     public int playersInRoomCount;
 
+    private readonly PhotonHashtable _countDownProps = new PhotonHashtable { { StartTimeKey, 0f } };
+    private readonly PhotonHashtable _fillAIProps = new PhotonHashtable { { "AI", false } };
+    private readonly PhotonHashtable _fastStartProps = new PhotonHashtable { { FastStartKey, 0 } };
+    private readonly PhotonHashtable _gameStartedProps = new PhotonHashtable { { "GameStarted", false } };
+
+    private int _reconnectAttempts;
+    private const int MaxReconnectAttempts = 3;
+    private bool _isReconnecting;
+
     
     private void Awake()
     {
@@ -91,13 +100,10 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
                 var remainingTime = serverElapsedTime;
 
                 // Update room properties periodically (not every frame)
-                if (Time.frameCount % 30 == 0) // Every 30 framess
+                if (Time.frameCount % 30 == 0) // Every 30 frames
                 {
-                    var countDownTime = new PhotonHashtable
-                    {
-                        { StartTimeKey, remainingTime }
-                    };
-                    client.Client.CurrentRoom.SetCustomProperties(countDownTime);
+                    _countDownProps[StartTimeKey] = remainingTime;
+                    client.Client.CurrentRoom.SetCustomProperties(_countDownProps);
                 }
 
                 // Fill AI when 10 seconds remain
@@ -106,11 +112,8 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
                     _menuUIHandler.addAI = true;
                     _menuUIHandler.matchmakingInfo.text = "FOUND PLAYER STARTING";
                     
-                    var fillAI = new PhotonHashtable
-                    {
-                        { "AI", _menuUIHandler.addAI }
-                    };
-                    client.Client.CurrentRoom.SetCustomProperties(fillAI);
+                    _fillAIProps["AI"] = _menuUIHandler.addAI;
+                    client.Client.CurrentRoom.SetCustomProperties(_fillAIProps);
                 }
 
                 var targetTime = maxMatchMakingTime;
@@ -128,20 +131,14 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
                     _menuUIHandler.matchmakingInfo.text = "FOUND PLAYER STARTING";
                     
                     //Once a real player is found remove AI
-                    var fillAI = new PhotonHashtable
-                    {
-                        { "AI", _menuUIHandler.addAI }
-                    };
-                    client.Client.CurrentRoom.SetCustomProperties(fillAI);
+                    _fillAIProps["AI"] = _menuUIHandler.addAI;
+                    client.Client.CurrentRoom.SetCustomProperties(_fillAIProps);
 
                     // Fast start 3-second countdown logic
                     if (!client.Client.CurrentRoom.CustomProperties.ContainsKey(FastStartKey))
                     {
-                        var fastStartProps = new PhotonHashtable
-                        {
-                            { FastStartKey, Environment.TickCount }
-                        };
-                        client.Client.CurrentRoom.SetCustomProperties(fastStartProps);
+                        _fastStartProps[FastStartKey] = Environment.TickCount;
+                        client.Client.CurrentRoom.SetCustomProperties(_fastStartProps);
                     }
                 }
 
@@ -155,8 +152,8 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
                         StartGame();
                         Debug.Log("Game started after 3 seconds because 2 or more players were present");
                         onStartGame = true;
-                        var gameStartedProp = new PhotonHashtable { { "GameStarted", true } };
-                        client.Client.CurrentRoom.SetCustomProperties(gameStartedProp);
+                        _gameStartedProps["GameStarted"] = true;
+                        client.Client.CurrentRoom.SetCustomProperties(_gameStartedProps);
                         return;
                     }
                 }
@@ -168,8 +165,8 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
                     Debug.Log($"Game Started after {targetTime} seconds");
 
                     onStartGame = true;
-                    var gameStartedProp = new PhotonHashtable { { "GameStarted", true } };
-                    client.Client.CurrentRoom.SetCustomProperties(gameStartedProp);
+                    _gameStartedProps["GameStarted"] = true;
+                    client.Client.CurrentRoom.SetCustomProperties(_gameStartedProps);
                 }
             }
         }
@@ -494,7 +491,7 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
         config.SimulationConfig = simulationConfig;
         config.SystemsConfig = systemsConfig;
 
-        config.Seed = Random.Range(0, 1000);
+        config.Seed = Random.Range(int.MinValue, int.MaxValue);
         
         //Set Game Mode
         switch (_menuUIHandler.gameMode)
@@ -592,19 +589,40 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
     public void OnDisconnected(DisconnectCause cause)
     {
         Utils.DebugLog($"OnDisconnected cause {cause}");
-        switch (cause)
+
+        bool isIntentional = cause == DisconnectCause.DisconnectByClientLogic;
+        bool isInMultiplayerMatch = NetworkSceneManager.Instance != null && NetworkSceneManager.Instance.multiplayer;
+
+        if (!isIntentional && isInMultiplayerMatch && _reconnectAttempts < MaxReconnectAttempts)
         {
-            case DisconnectCause.DisconnectByClientLogic:
-                break;
-            default:
-                _menuUIHandler.Error("ERROR","Disconnected cause "+cause);
-                break;
+            _reconnectAttempts++;
+            _isReconnecting = true;
+            Utils.DebugLog($"Reconnect attempt {_reconnectAttempts}/{MaxReconnectAttempts}");
+
+            if (InGameUIHandler.Instance != null)
+                InGameUIHandler.Instance.connectionBadPanel.SetActive(true);
+
+            if (!UIClientHandler.Instance.Client.ReconnectAndRejoin())
+                EndReconnectAttempts();
+
+            return;
         }
-        
-        //ADDED
+
+        if (!isIntentional)
+            _menuUIHandler.Error("ERROR", "Disconnected cause " + cause);
+
+        EndReconnectAttempts();
+    }
+
+    private void EndReconnectAttempts()
+    {
+        _reconnectAttempts = 0;
+        _isReconnecting = false;
+
+        if (InGameUIHandler.Instance != null)
+            InGameUIHandler.Instance.connectionBadPanel.SetActive(false);
+
         QuantumRunner.ShutdownAll();
-        
-        //RETURN TO MAIN MENU
         NetworkSceneManager.Instance.MainMenu();
     }
 
@@ -645,7 +663,17 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
     public void OnJoinedRoom()
     {
         Utils.DebugLog($"OnJoinedRoom");
-        
+
+        if (_isReconnecting)
+        {
+            // Successfully rejoined the match — hide reconnect overlay and resume
+            _reconnectAttempts = 0;
+            _isReconnecting = false;
+            if (InGameUIHandler.Instance != null)
+                InGameUIHandler.Instance.connectionBadPanel.SetActive(false);
+            return;
+        }
+
         //CHECKS TO JUMP DIRECTLY IN GAME OR IN ROOM
         if (UIClientHandler.Instance.Client.CurrentRoom.CustomProperties.TryGetValue("IsGameStarted", out object checkGameStarted))
         {
@@ -686,7 +714,13 @@ public class LobbyConnectionHandler : MonoBehaviour, IConnectionCallbacks, IMatc
     
     public void OnJoinRoomFailed(short returnCode, string message)
     {
-        //Utils.DebugLogError($"OnJoinRoomFailed return code {returnCode} message {message}");
+        if (_isReconnecting)
+        {
+            // Room expired — give up and return to main menu
+            _menuUIHandler.Error("ERROR", "Match session expired");
+            EndReconnectAttempts();
+            return;
+        }
         _menuUIHandler.Error("ERROR","OnJoinRoomFailed return code " +returnCode+ " message "+message);
     }
 

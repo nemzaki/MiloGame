@@ -34,10 +34,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        PerformanceManager.EnsureExists();
         Application.targetFrameRate = targetFPS;
         
         localRunnerDebug = FindAnyObjectByType<QuantumRunnerLocalDebug>();
-        localRunnerDebug.RuntimeConfig.Seed = Random.Range(0, 1000);
+        localRunnerDebug.RuntimeConfig.Seed = Random.Range(int.MinValue, int.MaxValue);
         
         //RenderSettings.fog = true; // Turn fog on
     }

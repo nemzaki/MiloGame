@@ -180,9 +180,18 @@ public class MainMenuUIHandler : MonoBehaviour
         
         var appSettings = PhotonServerSettings.Global.AppSettings;
         currentRegionIndex = SaveDataLocal.Instance.currentRegionIndex;
-        appSettings.FixedRegion = region[currentRegionIndex].region;
-        
-        regionText.text = region[currentRegionIndex].name;
+
+        if (currentRegionIndex < 0)
+        {
+            // No region pinned — let Photon pick the best (lowest latency) region
+            appSettings.FixedRegion = string.Empty;
+            regionText.text = "Auto";
+        }
+        else
+        {
+            appSettings.FixedRegion = region[currentRegionIndex].region;
+            regionText.text = region[currentRegionIndex].name;
+        }
         
         ConnectedToServer();
     }
@@ -766,7 +775,18 @@ public class MainMenuUIHandler : MonoBehaviour
     public void ChangeRegionNext()
     {
         var appSettings = PhotonServerSettings.Global.AppSettings;
-        
+
+        // Auto (-1) → first explicit region (0)
+        if (currentRegionIndex < 0)
+        {
+            currentRegionIndex = 0;
+            regionText.text = region[currentRegionIndex].name;
+            appSettings.FixedRegion = region[currentRegionIndex].region;
+            SaveDataLocal.Instance.currentRegionIndex = currentRegionIndex;
+            SaveDataLocal.Instance.SaveGame();
+            return;
+        }
+
         if(currentRegionIndex == region.Length - 1)
             return;
         
@@ -781,7 +801,18 @@ public class MainMenuUIHandler : MonoBehaviour
     {
         var appSettings = PhotonServerSettings.Global.AppSettings;
 
-        if(currentRegionIndex == 0)
+        // First explicit region (0) → Auto
+        if (currentRegionIndex == 0)
+        {
+            currentRegionIndex = -1;
+            regionText.text = "Auto";
+            appSettings.FixedRegion = string.Empty;
+            SaveDataLocal.Instance.currentRegionIndex = currentRegionIndex;
+            SaveDataLocal.Instance.SaveGame();
+            return;
+        }
+
+        if(currentRegionIndex < 0)
             return;
         
         currentRegionIndex -= 1;

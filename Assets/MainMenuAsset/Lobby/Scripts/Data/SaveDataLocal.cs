@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using System.Collections;
@@ -11,7 +10,7 @@ public class SaveDataLocal : MonoBehaviour
 {
     public static SaveDataLocal Instance { set; get; }
     
-    public string dataFile = "GameData.dat";
+    public string dataFile = "GameData.json";
     private string _folderPath;
     
     [Header("Authentication")] 
@@ -74,9 +73,6 @@ public class SaveDataLocal : MonoBehaviour
     
     public void SaveGame()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(GetFilePath(dataFile));
-
         DataSave data = new DataSave();
         data.cash = cash;
         
@@ -98,9 +94,9 @@ public class SaveDataLocal : MonoBehaviour
         
         //Authentication
         data.guessLogin = guessLogin;
-        data.appleIDToken = appleIDToken;
-        data.googleIDToken = googleIDToken;
         data.previousAccount = previousAccount;
+        // appleIDToken stores "linked" or "" only — never the actual Apple identity token
+        data.appleIDToken = appleIDToken;
         
         data.currentIdleType = currentIdleType;
         data.currentHardPunchType = currentHardPunchType;
@@ -111,8 +107,7 @@ public class SaveDataLocal : MonoBehaviour
         data.totalWins = totalWins;
         data.totalLoses = totalLoses;
         
-        bf.Serialize(file, data);
-        file.Close();
+        File.WriteAllText(GetFilePath(dataFile), JsonUtility.ToJson(data));
     }
     
     [ContextMenu("Load Data")]
@@ -120,62 +115,67 @@ public class SaveDataLocal : MonoBehaviour
     {
         if (File.Exists(GetFilePath(dataFile)))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file =
-                File.Open(GetFilePath(dataFile), FileMode.Open);
-            DataSave data = (DataSave)bf.Deserialize(file);
-            
-            file.Close();
+            try
+            {
+                DataSave data = JsonUtility.FromJson<DataSave>(File.ReadAllText(GetFilePath(dataFile)));
 
-            cash = data.cash;
-            
-            playerName = data.playerName;
-            currentPlayerIndex = data.currentPlayerIndex;
-            currentMovementType = data.currentMovementType;
-            currentHatIndex = data.currentHatIndex;
-            startDefaultDataPlayer = data.startDefaultDataPlayer;
-            logInStatus = data.logInStatus;
-            
-            language = data.language;
-            graphics = data.graphics;
-            musicFXVolume = data.musicFXVolume;
-            soundFXVolume = data.soundFXVolume;
-            haptics = data.haptics;
+                cash = data.cash;
+                
+                playerName = data.playerName;
+                currentPlayerIndex = data.currentPlayerIndex;
+                currentMovementType = data.currentMovementType;
+                currentHatIndex = data.currentHatIndex;
+                startDefaultDataPlayer = data.startDefaultDataPlayer;
+                logInStatus = data.logInStatus;
+                
+                language = data.language;
+                graphics = data.graphics;
+                musicFXVolume = data.musicFXVolume;
+                soundFXVolume = data.soundFXVolume;
+                haptics = data.haptics;
 
-            currentRegionIndex = data.currentRegionIndex;
-            gameMode = data.gameMode;
-            mapIndex = data.mapIndex;
-            
-            //Authentication
-            guessLogin = data.guessLogin;
-            appleIDToken = data.appleIDToken;
-            googleIDToken = data.googleIDToken;
-            previousAccount = data.previousAccount;
-            
-            currentIdleType = data.currentIdleType;
-            currentHardPunchType = data.currentHardPunchType;
-            currentHardKickType = data.currentHardKickType;
-            currentCelebrationType = data.currentCelebrationType;
-            
-            totalMatches = data.totalMatches;
-            totalWins = data.totalWins;
-            totalLoses = data.totalLoses;
+                currentRegionIndex = data.currentRegionIndex;
+                gameMode = data.gameMode;
+                mapIndex = data.mapIndex;
+                
+                //Authentication
+                guessLogin = data.guessLogin;
+                appleIDToken = data.appleIDToken;
+                previousAccount = data.previousAccount;
+                
+                currentIdleType = data.currentIdleType;
+                currentHardPunchType = data.currentHardPunchType;
+                currentHardKickType = data.currentHardKickType;
+                currentCelebrationType = data.currentCelebrationType;
+                
+                totalMatches = data.totalMatches;
+                totalWins = data.totalWins;
+                totalLoses = data.totalLoses;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Save file corrupted or incompatible, resetting to defaults: {e.Message}");
+                SetDefaults();
+            }
         }
         else
         {
-            // Set your default values here
-            cash = 20000;
-            playerName = null;
-            currentRegionIndex = 0;
-            startDefaultDataPlayer = 0;
-            language = "English";
-            graphics = 1; // Assuming 1 is a default setting
-            musicFXVolume = 1;
-            soundFXVolume = 1;
-            haptics = "on";
-            showNames = "on";
-            currentRegionIndex = 0;
+            SetDefaults();
         }
+    }
+
+    private void SetDefaults()
+    {
+        cash = 20000;
+        playerName = null;
+        currentRegionIndex = -1;
+        startDefaultDataPlayer = 0;
+        language = "English";
+        graphics = 1;
+        musicFXVolume = 1;
+        soundFXVolume = 1;
+        haptics = "on";
+        showNames = "on";
     }
     
     #region Cloud
@@ -304,8 +304,8 @@ class DataSave
     public string logInStatus;
     public string guessLogin;
     public string previousAccount;
+    // Persisted as "linked" or "" only — the actual Apple/Google identity tokens are NEVER stored on disk
     public string appleIDToken;
-    public string googleIDToken;
 
     //Fight
     public int currentIdleType;

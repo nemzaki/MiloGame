@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Unity.Services.CloudSave;
 using UnityEngine;
@@ -120,13 +119,11 @@ public class SavePlayerDataLocal : MonoBehaviour
         }
     }
     
-    public void SaveToBinary<T> (List<T> toSave, string filename) {
+    public void SaveToBinary<T>(List<T> toSave, string filename)
+    {
         string filePath = GetFilePath(filename);
-        BinaryFormatter formatter = new BinaryFormatter();
-        using (FileStream stream = new FileStream(filePath, FileMode.Create))
-        {
-            formatter.Serialize(stream, toSave);
-        }
+        var wrapper = new PlayerInputEntryListWrapper { entries = toSave as List<PlayerInputEntry> };
+        File.WriteAllText(filePath, JsonUtility.ToJson(wrapper));
     }
     
     public List<T> LoadListFromBinary<T>(string filename)
@@ -134,10 +131,17 @@ public class SavePlayerDataLocal : MonoBehaviour
         string filePath = GetFilePath(filename);
         if (File.Exists(filePath))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream stream = new FileStream(filePath, FileMode.Open))
+            try
             {
-                return formatter.Deserialize(stream) as List<T>;
+                var wrapper = JsonUtility.FromJson<PlayerInputEntryListWrapper>(File.ReadAllText(filePath));
+                return wrapper.entries as List<T>;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"Player data file corrupted, resetting: {e.Message}");
+                currentPlayerType = 0;
+                currentPlayerHat = 0;
+                return new List<T>();
             }
         }
         else
@@ -149,6 +153,12 @@ public class SavePlayerDataLocal : MonoBehaviour
             return new List<T>();
         }
     }
+}
+
+[Serializable]
+public class PlayerInputEntryListWrapper
+{
+    public List<PlayerInputEntry> entries;
 }
 
 [Serializable]
