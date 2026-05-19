@@ -6,22 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/QuantumUser/Resources/DB/Melee/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 05e0d1b2669144c9dafdb981f841f799
   - enabled: 1
     path: Assets/QuantumUser/Scenes/QuantumGameScene.unity
     guid: 3098445113d85414fbfa1be2e4dbe623
   - enabled: 1
-    path: Assets/Files/Scenes/Map2.unity
+    path: Assets/Scenes/Map2.unity
     guid: a3951a2a05eaa403cbb0282cbf4e8aed
   - enabled: 1
-    path: Assets/Files/Scenes/Map3.unity
+    path: Assets/Scenes/Map3.unity
     guid: fa65e36e549d0414381514dbedd13048
   - enabled: 1
-    path: Assets/Files/Scenes/Map4.unity
+    path: Assets/Scenes/Map4.unity
     guid: cd319f919ec784e60b6be8f7b216a55a
   - enabled: 1
-    path: Assets/3DSceneTest.unity
+    path: Assets/Scenes/Map1.unity
     guid: c12866a5d28e74f02ad7f6c937751f45
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 9ca27feeafb2a4a9e878b9daa62c05f4, type: 3}
