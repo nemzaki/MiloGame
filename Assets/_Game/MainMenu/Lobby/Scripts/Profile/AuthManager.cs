@@ -151,9 +151,13 @@ public class AuthManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.GetPlayerNameAsync();
-            
+
             SaveDataLocal.Instance.playerName = AuthenticationService.Instance.PlayerName;
             mainMenuHandler.GetPlayerName(AuthenticationService.Instance.PlayerName);
+
+            // Merge cloud data before persisting — ensures restored state is saved locally.
+            await CloudSave.Instance.InitializeAsync();
+
             SaveDataLocal.Instance.SaveGame();
         }
         catch

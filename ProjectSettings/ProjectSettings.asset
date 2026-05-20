@@ -1004,11 +1004,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: bed3ca45-fd6a-4642-a089-7f6801a40d80
+  cloudProjectId: 879f66ea-ea77-4591-b80f-b706efc4d87b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: ItalianGame
-  organizationId: nemzaki
+  projectName: RapLegends
+  organizationId: spawncubestudios
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

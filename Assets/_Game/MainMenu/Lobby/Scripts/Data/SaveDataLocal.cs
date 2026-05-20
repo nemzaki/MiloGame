@@ -108,6 +108,10 @@ public class SaveDataLocal : MonoBehaviour
         data.totalLoses = totalLoses;
         
         File.WriteAllText(GetFilePath(dataFile), JsonUtility.ToJson(data));
+
+        // Non-blocking cloud sync — never delays the local save.
+        if (CloudSave.Instance != null)
+            _ = CloudSave.Instance.SaveCoreDataAsync();
     }
     
     [ContextMenu("Load Data")]
