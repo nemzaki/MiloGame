@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RapLegends — Brand & Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #07050F;
+    --bg-surface: #0E0B1C;
+    --bg-card: #13102A;
+    --bg-card-hover: #1A1635;
+    --bg-elevated: #1E1B38;
+
+    --brand-purple: #7B2FFF;
+    --brand-purple-light: #9B5FFF;
+    --brand-purple-glow: rgba(123,47,255,0.35);
+
+    --neon-cyan: #00F0FF;
+    --neon-cyan-glow: rgba(0,240,255,0.3);
+    --neon-pink: #FF2D9B;
+    --neon-pink-glow: rgba(255,45,155,0.3);
+    --neon-green: #00FF87;
+
+    --cta-orange: #FF6B1A;
+    --cta-orange-glow: rgba(255,107,26,0.35);
+
+    --gold: #FFB800;
+    --gold-glow: rgba(255,184,0,0.3);
+
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255,255,255,0.65);
+    --text-muted: rgba(255,255,255,0.35);
+
+    --common: #8A8FA8;
+    --rare: #3B82F6;
+    --epic: #A855F7;
+    --legendary: #F97316;
+    --mythic: #EC4899;
+
+    --border-subtle: rgba(255,255,255,0.07);
+    --border-glow: rgba(123,47,255,0.4);
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,5,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--brand-purple-light), var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  }
+  nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text-primary); }
+
+  /* LAYOUT */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 40px 120px; }
+
+  /* SECTIONS */
+  section { padding-top: 80px; }
+  .section-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brand-purple-light);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin-bottom: 48px;
+    font-size: 15px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--brand-purple) 0%, transparent 100%);
+    margin: 80px 0 0;
+    opacity: 0.3;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(123,47,255,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    letter-spacing: 6px;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, #FFFFFF 30%, var(--brand-purple-light) 70%, var(--neon-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .badge-purple { border-color: var(--brand-purple); color: var(--brand-purple-light); background: rgba(123,47,255,0.1); }
+  .badge-cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); background: rgba(0,240,255,0.08); }
+  .badge-orange { border-color: var(--cta-orange); color: var(--cta-orange); background: rgba(255,107,26,0.08); }
+
+  /* COLOR PALETTE */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .color-swatch {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+  .swatch-block {
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+  }
+  .swatch-info {
+    padding: 12px 14px;
+    background: var(--bg-card);
+  }
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: monospace;
+  }
+  .swatch-role {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+  .color-section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 32px 0 16px;
+  }
+
+  /* TYPOGRAPHY */
+  .type-specimen {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 16px;
+  }
+  .type-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .type-label span { color: var(--brand-purple-light); }
+  .type-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 3px; color: var(--text-primary); }
+  .type-heading { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--text-primary); }
+  .type-body { font-family: 'Inter', sans-serif; color: var(--text-secondary); }
+  .type-meta { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+
+  /* BUTTONS */
+  .component-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand-purple) 0%, #5B1FBF 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px var(--brand-purple-glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--brand-purple-glow); }
+  .btn-cta {
+    background: linear-gradient(135deg, var(--cta-orange) 0%, #E04A00 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px var(--cta-orange-glow);
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--cta-orange-glow); }
+  .btn-outline {
+    background: transparent;
+    color: var(--brand-purple-light);
+    border: 1.5px solid var(--brand-purple);
+    box-shadow: inset 0 0 20px rgba(123,47,255,0.05);
+  }
+  .btn-outline:hover { background: rgba(123,47,255,0.12); }
+  .btn-ghost {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+  .btn-sm { padding: 9px 18px; font-size: 12px; border-radius: var(--radius-sm); }
+  .btn-lg { padding: 18px 40px; font-size: 16px; border-radius: var(--radius-lg); letter-spacing: 1px; }
+  .btn-icon { font-size: 16px; }
+
+  /* CARDS */
+  .cards-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .char-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .char-card:hover { transform: translateY(-4px); }
+  .char-card-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .char-card-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, var(--bg-card), transparent);
+  }
+  .char-card-body { padding: 14px 16px; }
+  .char-card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .rarity-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .rarity-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .rarity-common { background: rgba(138,143,168,0.15); color: var(--common); }
+  .rarity-common .rarity-dot { background: var(--common); }
+  .rarity-rare { background: rgba(59,130,246,0.15); color: var(--rare); }
+  .rarity-rare .rarity-dot { background: var(--rare); }
+  .rarity-epic { background: rgba(168,85,247,0.15); color: var(--epic); }
+  .rarity-epic .rarity-dot { background: var(--epic); }
+  .rarity-legendary { background: rgba(249,115,22,0.18); color: var(--legendary); }
+  .rarity-legendary .rarity-dot { background: var(--legendary); }
+  .rarity-mythic { background: rgba(236,72,153,0.18); color: var(--mythic); }
+  .rarity-mythic .rarity-dot { background: var(--mythic); }
+
+  .card-stats {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .stat-pill {
+    flex: 1;
+    background: var(--bg-elevated);
+    border-radius: 6px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .stat-val { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+  .stat-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* RARITY TABLE */
+  .rarity-table {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .rarity-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 120px 200px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: center;
+    gap: 16px;
+  }
+  .rarity-row:last-child { border-bottom: none; }
+  .rarity-row.header {
+    background: var(--bg-elevated);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .rarity-bar {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 6px;
+  }
+
+  /* FIGHT UI */
+  .fight-mockup {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .hud-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .health-block { flex: 1; }
+  .fighter-name-hud {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .fighter-name-hud.right { text-align: right; }
+  .health-bar-track {
+    height: 14px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .health-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .health-green { background: linear-gradient(90deg, #00C853, #69F000); box-shadow: 0 0 10px rgba(105,240,0,0.4); }
+  .health-yellow { background: linear-gradient(90deg, #FFD600, #FFAB00); box-shadow: 0 0 10px rgba(255,171,0,0.4); }
+  .health-red { background: linear-gradient(90deg, #FF1744, #FF6D00); box-shadow: 0 0 10px rgba(255,23,68,0.5); }
+  .stamina-bar-fill { background: linear-gradient(90deg, var(--neon-cyan), #0099FF); box-shadow: 0 0 8px var(--neon-cyan-glow); }
+  .stamina-bar-track {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+
+  .round-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 100px;
+  }
+  .round-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+  }
+  .round-timer {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+  .round-pips { display: flex; gap: 6px; }
+  .round-pip {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+  .round-pip.won { background: var(--gold); box-shadow: 0 0 6px var(--gold-glow); }
+
+  /* COMBO COUNTER */
+  .combo-display {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 20px 28px;
+    margin-right: 16px;
+  }
+  .combo-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+  .combo-x {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    vertical-align: super;
+  }
+  .combo-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .ko-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 96px;
+    letter-spacing: 8px;
+    text-align: center;
+    margin: 20px 0;
+    background: linear-gradient(135deg, #FF4444 0%, var(--cta-orange) 40%, #FFD600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(255,68,68,0.5));
+  }
+  .fight-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    letter-spacing: 8px;
+    text-align: center;
+    margin: 12px 0;
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--neon-cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px var(--neon-cyan-glow));
+  }
+  .round-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 6px;
+    text-align: center;
+    color: var(--gold);
+    filter: drop-shadow(0 0 15px var(--gold-glow));
+  }
+
+  /* VFX SWATCHES */
+  .vfx-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .vfx-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    text-align: center;
+  }
+  .vfx-spark {
+    font-size: 48px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .vfx-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .vfx-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ICON SYSTEM */
+  .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .icon-tile {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+  }
+  .icon-tile span:first-child { font-size: 28px; }
+  .icon-tile span:last-child { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* SPACING */
+  .spacing-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .spacing-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .spacing-vis {
+    background: rgba(123,47,255,0.25);
+    border: 1px dashed var(--brand-purple);
+    border-radius: 4px;
+    width: 48px;
+  }
+  .spacing-label { font-size: 11px; color: var(--text-muted); font-family: monospace; }
+  .spacing-val { font-size: 12px; font-weight: 700; color: var(--brand-purple-light); }
+
+  /* MOBILE SCREENS */
+  .screens-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .screen-frame {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 9/19;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .screen-notch {
+    height: 28px;
+    background: var(--bg-base);
+    border-radius: 0 0 16px 16px;
+    width: 90px;
+    margin: 0 auto;
+    margin-bottom: -4px;
+    z-index: 2;
+    position: relative;
+  }
+  .screen-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 16px;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .screen-content { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .screen-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-purple-light); }
+  .screen-card-mini {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-subtle);
+  }
+  .screen-card-title { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .screen-card-sub { font-size: 9px; color: var(--text-muted); }
+  .screen-bottom-nav {
+    display: flex;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+  }
+  .nav-tab { flex: 1; padding: 10px 0; text-align: center; font-size: 18px; }
+  .nav-tab.active { color: var(--brand-purple-light); }
+  .nav-tab.inactive { color: var(--text-muted); opacity: 0.5; }
+
+  /* MOTION SECTION */
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .motion-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .motion-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .motion-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .motion-spec {
+    display: inline-block;
+    background: var(--bg-elevated);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--neon-cyan);
+    margin-top: 10px;
+  }
+
+  /* GRADIENT REFERENCE */
+  .gradient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .gradient-swatch {
+    height: 80px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: flex-end;
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: monospace;
+    color: rgba(255,255,255,0.7);
+  }
+
+  footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">RAP LEGENDS</div>
+  <a href="#overview">Overview</a>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Type</a>
+  <a href="#components">Components</a>
+  <a href="#cards">Cards</a>
+  <a href="#rarity">Rarity</a>
+  <a href="#fight-ui">Fight UI</a>
+  <a href="#vfx">VFX Language</a>
+  <a href="#screens">Screens</a>
+  <a href="#motion">Motion</a>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero" id="overview">
+    <div class="hero-eyebrow">Brand & Design System — v1.0</div>
+    <h1><span>RAP LEGENDS</span></h1>
+    <p class="hero-sub">A dark, electric visual identity for a competitive 1v1 fighting game. Bold, kinetic, and dripping in neon.</p>
+    <div class="hero-badges">
+      <span class="badge badge-purple">Mobile-First</span>
+      <span class="badge badge-cyan">Android · iOS · Windows</span>
+      <span class="badge badge-orange">Competitive Fighting</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BRAND VOICE -->
+  <section>
+    <div class="section-tag">Brand Identity</div>
+    <h2>Who We Are</h2>
+    <p class="section-desc">RapLegends is a competitive 1v1 brawler where every hit feels legendary. The visual language pulls from the dark-premium mobile aesthetic of card-battlers and the visceral impact design of classic arcade fighters.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:40px;">
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">⚡</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Electric</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Every UI element crackles with energy. Glow effects, neon accents, and high-contrast builds create a sense of live power.</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">🌑</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Dark Premium</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Deep navy-purples as the canvas. Darkness makes neons pop. Never pitch black — always a purple undertone.</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">💥</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Impact</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">In-fight UI is bold, oversized, and readable at a glance. Hit counters, round announcements, and KO text are cinematic events.</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">🃏</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Collectible</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Characters and cosmetics are presented as rarified cards. Rarity tiers create a progression aspiration language.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COLOR PALETTE -->
+  <section id="colors">
+    <div class="section-tag">Color System</div>
+    <h2>Color Palette</h2>
+    <p class="section-desc">Built on a deep purple-navy foundation with electric neon accents. Every color has a specific role — never used interchangeably.</p>
+
+    <div class="color-section-label">Backgrounds</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#07050F;border-bottom:1px solid rgba(255,255,255,0.05);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Base</div>
+          <div class="swatch-hex">#07050F</div>
+          <div class="swatch-role">App background</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#0E0B1C;">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#0E0B1C</div>
+          <div class="swatch-role">Page backgrounds</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#13102A;">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Card</div>
+          <div class="swatch-hex">#13102A</div>
+          <div class="swatch-role">Cards & panels</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#1E1B38;">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Elevated</div>
+          <div class="swatch-hex">#1E1B38</div>
+          <div class="swatch-role">Modals, overlays</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-section-label">Brand & Accent</div>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#7B2FFF,#5B1FBF);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Brand Purple</div>
+          <div class="swatch-hex">#7B2FFF</div>
+          <div class="swatch-role">Primary brand, buttons, CTAs</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#00F0FF,#0099FF);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Neon Cyan</div>
+          <div class="swatch-hex">#00F0FF</div>
+          <div class="swatch-role">Energy / stamina bars</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#FF6B1A,#E04A00);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">CTA Orange</div>
+          <div class="swatch-hex">#FF6B1A</div>
+          <div class="swatch-role">Primary action buttons</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#FFB800,#FF8C00);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Gold</div>
+          <div class="swatch-hex">#FFB800</div>
+          <div class="swatch-role">Premium, wins, trophies</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#FF2D9B,#C0006A);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Neon Pink</div>
+          <div class="swatch-hex">#FF2D9B</div>
+          <div class="swatch-role">Mythic rarity, alerts</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:linear-gradient(135deg,#00FF87,#00C853);">
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Neon Green</div>
+          <div class="swatch-hex">#00FF87</div>
+          <div class="swatch-role">Health full, success states</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-section-label">Gradients</div>
+    <div class="gradient-grid">
+      <div class="gradient-swatch" style="background:linear-gradient(135deg,#7B2FFF 0%,#00F0FF 100%);">Brand Hero</div>
+      <div class="gradient-swatch" style="background:linear-gradient(135deg,#FF6B1A 0%,#FFD600 100%);">Combat Energy</div>
+      <div class="gradient-swatch" style="background:linear-gradient(135deg,#FF2D9B 0%,#7B2FFF 100%);">Mythic</div>
+      <div class="gradient-swatch" style="background:linear-gradient(135deg,#0E0B1C 0%,#1E1B38 100%);">Surface Depth</div>
+      <div class="gradient-swatch" style="background:linear-gradient(135deg,#FFB800 0%,#FF6B1A 100%);">Legendary</div>
+      <div class="gradient-swatch" style="background:linear-gradient(180deg,transparent 0%,#07050F 100%);">Scene Fade</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TYPOGRAPHY -->
+  <section id="typography">
+    <div class="section-tag">Typography</div>
+    <h2>Type System</h2>
+    <p class="section-desc">Three typefaces, three distinct roles. Bebas Neue for impact moments, Barlow Condensed for UI headers, Inter for all body content.</p>
+
+    <div class="type-specimen">
+      <div class="type-label">Display — Bebas Neue <span>Fight events, KO text, round titles, logo lockup</span></div>
+      <div class="type-display" style="font-size:72px;">ROUND 1</div>
+      <div class="type-display" style="font-size:48px;color:var(--text-secondary);">FIGHT · K.O. · PERFECT</div>
+      <div class="type-display" style="font-size:28px;color:var(--text-muted);">RAP LEGENDS — COMPETITIVE BRAWLER</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">UI Heading — Barlow Condensed 700 <span>Screen titles, card names, section headers</span></div>
+      <div class="type-heading" style="font-size:36px;">FIGHTER ROSTER</div>
+      <div class="type-heading" style="font-size:24px;color:var(--text-secondary);">SEASON PASS · RANKED BATTLES</div>
+      <div class="type-heading" style="font-size:18px;color:var(--text-muted);">Match History — Weekly Tournament</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">Body — Inter 400/500/700 <span>All readable content, descriptions, stats, UI labels</span></div>
+      <div class="type-body" style="font-size:17px;font-weight:700;margin-bottom:6px;">Win your way to the top.</div>
+      <div class="type-body" style="font-size:15px;margin-bottom:6px;">Challenge opponents worldwide in real-time 1v1 battles. Master combos, unlock cosmetics, and climb the ranked ladder.</div>
+      <div class="type-body" style="font-size:13px;color:var(--text-muted);">Match ID: #4812930 · Duration: 2:34 · Server: EU-West</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">Meta / Label — Inter 700 Uppercase <span>Tags, status chips, navigation labels, stat labels</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;">
+        <div class="type-meta" style="font-size:13px;">SEASON 3</div>
+        <div class="type-meta" style="font-size:11px;">WIN RATE</div>
+        <div class="type-meta" style="font-size:10px;color:var(--brand-purple-light);">RANKED</div>
+        <div class="type-meta" style="font-size:10px;color:var(--neon-cyan);">LIVE</div>
+        <div class="type-meta" style="font-size:10px;color:var(--cta-orange);">LIMITED</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;margin-bottom:40px;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border-subtle);">
+            <th style="text-align:left;padding:10px 12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Role</th>
+            <th style="text-align:left;padding:10px 12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Font</th>
+            <th style="text-align:left;padding:10px 12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Weight</th>
+            <th style="text-align:left;padding:10px 12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Size</th>
+            <th style="text-align:left;padding:10px 12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Use</th>
+          </tr>
+        </thead>
+        <tbody style="font-size:13px;color:var(--text-secondary);">
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;font-family:'Bebas Neue';font-size:16px;color:var(--text-primary);">KO DISPLAY</td><td style="padding:10px 12px;">Bebas Neue</td><td>400</td><td>72–120px</td><td>Fight events only</td></tr>
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;font-family:'Bebas Neue';font-size:14px;color:var(--text-primary);">ROUND TITLE</td><td style="padding:10px 12px;">Bebas Neue</td><td>400</td><td>40–56px</td><td>Round, logo, score</td></tr>
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;font-family:'Barlow Condensed';font-size:20px;font-weight:700;color:var(--text-primary);">Screen Title</td><td style="padding:10px 12px;">Barlow Condensed</td><td>700</td><td>28–36px</td><td>Page & section titles</td></tr>
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;font-family:'Barlow Condensed';font-size:16px;font-weight:600;color:var(--text-primary);">Card Name</td><td style="padding:10px 12px;">Barlow Condensed</td><td>600</td><td>16–20px</td><td>Cards, list items</td></tr>
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;font-weight:700;color:var(--text-primary);">Button Label</td><td style="padding:10px 12px;">Inter</td><td>700</td><td>13–15px</td><td>All buttons</td></tr>
+          <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:10px 12px;color:var(--text-primary);">Body Text</td><td style="padding:10px 12px;">Inter</td><td>400–500</td><td>13–15px</td><td>Descriptions, copy</td></tr>
+          <tr><td style="padding:10px 12px;color:var(--text-muted);">LABEL/TAG</td><td style="padding:10px 12px;">Inter</td><td>700</td><td>10–12px</td><td>Chips, status, nav</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <div class="section-tag">UI Components</div>
+    <h2>Buttons</h2>
+    <p class="section-desc">Button hierarchy is strict. One primary CTA per screen. Secondary actions use outline or ghost variants.</p>
+
+    <div class="component-grid">
+      <button class="btn btn-cta btn-lg">PLAY NOW</button>
+      <button class="btn btn-primary">Enter Ranked</button>
+      <button class="btn btn-outline">View Profile</button>
+      <button class="btn btn-ghost">Cancel</button>
+    </div>
+    <div class="component-grid">
+      <button class="btn btn-cta btn-sm">BUY NOW</button>
+      <button class="btn btn-primary btn-sm">Rematch</button>
+      <button class="btn btn-outline btn-sm">Stats</button>
+      <button class="btn btn-ghost btn-sm">Skip</button>
+    </div>
+
+    <h2 style="margin-top:48px;">Input & Status</h2>
+    <p class="section-desc">Inputs inherit the dark surface style. Status chips communicate state without color-only dependencies.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:40px;align-items:center;">
+      <div style="background:var(--bg-card);border:1.5px solid var(--border-glow);border-radius:var(--radius-md);padding:12px 16px;width:240px;">
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Username</div>
+        <div style="font-size:15px;color:var(--text-primary);">RapKing99</div>
+      </div>
+      <div style="background:var(--bg-card);border:1.5px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 16px;width:240px;">
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Search</div>
+        <div style="font-size:15px;color:var(--text-muted);">Find a fighter...</div>
+      </div>
+      <span class="badge badge-cyan" style="font-size:12px;padding:6px 14px;">● LIVE</span>
+      <span class="badge badge-orange" style="font-size:12px;padding:6px 14px;">⏱ LIMITED</span>
+      <span class="badge badge-purple" style="font-size:12px;padding:6px 14px;">🏆 RANKED</span>
+      <span style="background:rgba(0,255,135,0.12);color:#00FF87;border:1px solid #00FF87;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;">✓ WIN</span>
+      <span style="background:rgba(255,23,68,0.12);color:#FF1744;border:1px solid #FF1744;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;">✗ LOSS</span>
+    </div>
+
+    <h2 style="margin-top:48px;">Progress Bars</h2>
+    <p class="section-desc">Health, stamina, XP, and battle pass progress all use the same bar system with role-specific colors.</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:32px;margin-bottom:40px;">
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>Health</span><span style="color:#69F000;">87 / 100</span></div>
+          <div class="health-bar-track"><div class="health-bar-fill health-green" style="width:87%;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>Health (Warning)</span><span style="color:#FFD600;">42 / 100</span></div>
+          <div class="health-bar-track"><div class="health-bar-fill health-yellow" style="width:42%;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>Health (Critical)</span><span style="color:#FF1744;">15 / 100</span></div>
+          <div class="health-bar-track"><div class="health-bar-fill health-red" style="width:15%;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>Stamina</span><span style="color:var(--neon-cyan);">60 / 100</span></div>
+          <div class="stamina-bar-track"><div class="health-bar-fill stamina-bar-fill" style="width:60%;height:100%;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>XP Progress</span><span style="color:var(--brand-purple-light);">2,400 / 5,000</span></div>
+          <div class="health-bar-track"><div class="health-bar-fill" style="width:48%;background:linear-gradient(90deg,var(--brand-purple),var(--brand-purple-light));box-shadow:0 0 10px var(--brand-purple-glow);"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;"><span>Battle Pass</span><span style="color:var(--gold);">Level 34 / 50</span></div>
+          <div class="health-bar-track"><div class="health-bar-fill" style="width:68%;background:linear-gradient(90deg,var(--gold),#FF8C00);box-shadow:0 0 10px var(--gold-glow);"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CHARACTER CARDS -->
+  <section id="cards">
+    <div class="section-tag">Card System</div>
+    <h2>Character Cards</h2>
+    <p class="section-desc">Fighter cards are the core collectible unit. Rarity determines border treatment, background glow, and unlock animation style.</p>
+
+    <div class="cards-row">
+      <div class="char-card">
+        <div class="char-card-img" style="background:linear-gradient(160deg,#1A1635,#0E0B1C);">🥊</div>
+        <div class="char-card-body">
+          <div class="char-card-name">Street Sage</div>
+          <span class="rarity-tag rarity-common"><span class="rarity-dot"></span>Common</span>
+          <div class="card-stats">
+            <div class="stat-pill"><div class="stat-val">72</div><div class="stat-lbl">ATK</div></div>
+            <div class="stat-pill"><div class="stat-val">68</div><div class="stat-lbl">DEF</div></div>
+            <div class="stat-pill"><div class="stat-val">80</div><div class="stat-lbl">SPD</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="char-card" style="border-color:rgba(59,130,246,0.3);box-shadow:0 0 20px rgba(59,130,246,0.1);">
+        <div class="char-card-img" style="background:linear-gradient(160deg,#0F1F3D,#0E0B1C);">🎤</div>
+        <div class="char-card-body">
+          <div class="char-card-name">Mic Drop</div>
+          <span class="rarity-tag rarity-rare"><span class="rarity-dot"></span>Rare</span>
+          <div class="card-stats">
+            <div class="stat-pill"><div class="stat-val">85</div><div class="stat-lbl">ATK</div></div>
+            <div class="stat-pill"><div class="stat-val">74</div><div class="stat-lbl">DEF</div></div>
+            <div class="stat-pill"><div class="stat-val">90</div><div class="stat-lbl">SPD</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="char-card" style="border-color:rgba(168,85,247,0.4);box-shadow:0 0 24px rgba(168,85,247,0.15);">
+        <div class="char-card-img" style="background:linear-gradient(160deg,#200E3A,#0E0B1C);">👑</div>
+        <div class="char-card-body">
+          <div class="char-card-name">Crown Holder</div>
+          <span class="rarity-tag rarity-epic"><span class="rarity-dot"></span>Epic</span>
+          <div class="card-stats">
+            <div class="stat-pill"><div class="stat-val">94</div><div class="stat-lbl">ATK</div></div>
+            <div class="stat-pill"><div class="stat-val">88</div><div class="stat-lbl">DEF</div></div>
+            <div class="stat-pill"><div class="stat-val">86</div><div class="stat-lbl">SPD</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="char-card" style="border-color:rgba(249,115,22,0.5);box-shadow:0 0 30px rgba(249,115,22,0.18);">
+        <div class="char-card-img" style="background:linear-gradient(160deg,#2A1200,#0E0B1C);">🔥</div>
+        <div class="char-card-body">
+          <div class="char-card-name">Inferno Rex</div>
+          <span class="rarity-tag rarity-legendary"><span class="rarity-dot"></span>Legendary</span>
+          <div class="card-stats">
+            <div class="stat-pill"><div class="stat-val">98</div><div class="stat-lbl">ATK</div></div>
+            <div class="stat-pill"><div class="stat-val">91</div><div class="stat-lbl">DEF</div></div>
+            <div class="stat-pill"><div class="stat-val">95</div><div class="stat-lbl">SPD</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="char-card" style="border-color:rgba(236,72,153,0.6);box-shadow:0 0 40px rgba(236,72,153,0.2);">
+        <div class="char-card-img" style="background:linear-gradient(160deg,#2A0028,#0E0B1C);">⚡</div>
+        <div class="char-card-body">
+          <div class="char-card-name">Void Empress</div>
+          <span class="rarity-tag rarity-mythic"><span class="rarity-dot"></span>Mythic</span>
+          <div class="card-stats">
+            <div class="stat-pill"><div class="stat-val">100</div><div class="stat-lbl">ATK</div></div>
+            <div class="stat-pill"><div class="stat-val">97</div><div class="stat-lbl">DEF</div></div>
+            <div class="stat-pill"><div class="stat-val">99</div><div class="stat-lbl">SPD</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RARITY SYSTEM -->
+  <section id="rarity">
+    <div class="section-tag">Rarity System</div>
+    <h2>Rarity Tiers</h2>
+    <p class="section-desc">Five rarity tiers create a clear aspirational progression. Each tier has a distinct color, card border glow, and unlock effect intensity.</p>
+
+    <div class="rarity-table">
+      <div class="rarity-row header">
+        <span>Tier</span>
+        <span>Identity</span>
+        <span>Color</span>
+        <span>Card Glow</span>
+      </div>
+      <div class="rarity-row">
+        <span class="rarity-tag rarity-common" style="width:fit-content;"><span class="rarity-dot"></span>Common</span>
+        <span style="font-size:13px;color:var(--text-secondary);">Base fighters, starter cosmetics</span>
+        <span style="font-family:monospace;font-size:12px;color:var(--common);">#8A8FA8</span>
+        <div><div class="rarity-bar" style="background:var(--common);width:20%;"></div></div>
+      </div>
+      <div class="rarity-row">
+        <span class="rarity-tag rarity-rare" style="width:fit-content;"><span class="rarity-dot"></span>Rare</span>
+        <span style="font-size:13px;color:var(--text-secondary);">Skilled fighters, blue cosmetics</span>
+        <span style="font-family:monospace;font-size:12px;color:var(--rare);">#3B82F6</span>
+        <div><div class="rarity-bar" style="background:var(--rare);width:40%;box-shadow:0 0 6px rgba(59,130,246,0.5);"></div></div>
+      </div>
+      <div class="rarity-row">
+        <span class="rarity-tag rarity-epic" style="width:fit-content;"><span class="rarity-dot"></span>Epic</span>
+        <span style="font-size:13px;color:var(--text-secondary);">Elite fighters, animated cosmetics</span>
+        <span style="font-family:monospace;font-size:12px;color:var(--epic);">#A855F7</span>
+        <div><div class="rarity-bar" style="background:var(--epic);width:60%;box-shadow:0 0 8px rgba(168,85,247,0.5);"></div></div>
+      </div>
+      <div class="rarity-row">
+        <span class="rarity-tag rarity-legendary" style="width:fit-content;"><span class="rarity-dot"></span>Legendary</span>
+        <span style="font-size:13px;color:var(--text-secondary);">Tournament fighters, fire FX cosmetics</span>
+        <span style="font-family:monospace;font-size:12px;color:var(--legendary);">#F97316</span>
+        <div><div class="rarity-bar" style="background:var(--legendary);width:80%;box-shadow:0 0 10px rgba(249,115,22,0.6);"></div></div>
+      </div>
+      <div class="rarity-row">
+        <span class="rarity-tag rarity-mythic" style="width:fit-content;"><span class="rarity-dot"></span>Mythic</span>
+        <span style="font-size:13px;color:var(--text-secondary);">Season exclusives, full-body VFX</span>
+        <span style="font-family:monospace;font-size:12px;color:var(--mythic);">#EC4899</span>
+        <div><div class="rarity-bar" style="background:linear-gradient(90deg,var(--mythic),var(--brand-purple));width:100%;box-shadow:0 0 12px rgba(236,72,153,0.7);"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FIGHT UI / HUD -->
+  <section id="fight-ui">
+    <div class="section-tag">Fight UI</div>
+    <h2>In-Fight HUD</h2>
+    <p class="section-desc">The HUD is minimal but readable at 60 FPS. All elements use oversized text and high-contrast color coding. No small text during combat.</p>
+
+    <div class="fight-mockup">
+      <div class="hud-row">
+        <div class="health-block">
+          <div class="fighter-name-hud">RAP KING</div>
+          <div class="health-bar-track"><div class="health-bar-fill health-green" style="width:82%;"></div></div>
+          <div class="stamina-bar-track"><div class="health-bar-fill stamina-bar-fill" style="width:65%;height:100%;"></div></div>
+        </div>
+        <div class="round-indicator">
+          <div class="round-label">ROUND</div>
+          <div class="round-timer">42</div>
+          <div class="round-pips">
+            <div class="round-pip won"></div>
+            <div class="round-pip"></div>
+          </div>
+        </div>
+        <div class="health-block">
+          <div class="fighter-name-hud right">VOID KING</div>
+          <div class="health-bar-track" style="transform:scaleX(-1);"><div class="health-bar-fill health-yellow" style="width:44%;"></div></div>
+          <div class="stamina-bar-track" style="transform:scaleX(-1);"><div class="health-bar-fill stamina-bar-fill" style="width:30%;height:100%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:48px;">Fight Announcement Text</h2>
+    <p class="section-desc">Bebas Neue at maximum size. These are cinematic moments — the typography should feel like it hits.</p>
+    <div class="fight-mockup" style="text-align:center;">
+      <div class="round-text">ROUND 2</div>
+      <div class="fight-text">FIGHT!</div>
+      <div class="ko-text">K.O.</div>
+    </div>
+
+    <h2 style="margin-top:48px;">Combo Counter</h2>
+    <p class="section-desc">Escalates in color intensity with each tier. White → Yellow → Orange → Red. Displayed on screen edge during active combos.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0;margin-bottom:40px;">
+      <div class="combo-display">
+        <div class="combo-number" style="color:var(--text-primary);">3<span class="combo-x">×</span></div>
+        <div class="combo-label">Combo</div>
+      </div>
+      <div class="combo-display">
+        <div class="combo-number" style="color:#FFD600;">7<span class="combo-x">×</span></div>
+        <div class="combo-label">Combo</div>
+      </div>
+      <div class="combo-display">
+        <div class="combo-number" style="color:var(--cta-orange);">12<span class="combo-x">×</span></div>
+        <div class="combo-label">Combo</div>
+      </div>
+      <div class="combo-display">
+        <div class="combo-number" style="color:#FF1744;filter:drop-shadow(0 0 12px rgba(255,23,68,0.6));">20<span class="combo-x">×</span></div>
+        <div class="combo-label" style="color:#FF1744;">MAX!</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- VFX LANGUAGE -->
+  <section id="vfx">
+    <div class="section-tag">VFX Language</div>
+    <h2>Hit Effects & VFX</h2>
+    <p class="section-desc">Borrowed from the Street Fighter / Tekken visual grammar. Every hit type has a distinct effect language that communicates damage weight instantly.</p>
+
+    <div class="vfx-grid">
+      <div class="vfx-card">
+        <span class="vfx-spark">💥</span>
+        <div class="vfx-name" style="color:#FFD600;">Normal Hit</div>
+        <div class="vfx-desc">Yellow-white spark burst. Small radius, sharp edges. 8–12 frame duration. Accompanied by 4–6 debris particles.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FFD600;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FFF176;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.4);"></span>
+        </div>
+      </div>
+      <div class="vfx-card">
+        <span class="vfx-spark">🔥</span>
+        <div class="vfx-name" style="color:var(--cta-orange);">Heavy Hit</div>
+        <div class="vfx-desc">Orange-red impact ring with radial shockwave. Larger radius, screen hitstop 2–4 frames. Screen edge flash white.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF6B1A;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF1744;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FFD600;"></span>
+        </div>
+      </div>
+      <div class="vfx-card">
+        <span class="vfx-spark">⚡</span>
+        <div class="vfx-name" style="color:var(--neon-cyan);">Special Move</div>
+        <div class="vfx-desc">Cyan-white energy arc. Trails behind limb movement. Lingers 20 frames with fade. Character briefly silhouettes white on contact.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#00F0FF;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#0099FF;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.6);"></span>
+        </div>
+      </div>
+      <div class="vfx-card">
+        <span class="vfx-spark">🛡️</span>
+        <div class="vfx-name" style="color:#3B82F6;">Block / Guard</div>
+        <div class="vfx-desc">Blue-white hexagonal barrier flash. No knockback particles. Subtle ring pulse expands from player center. Short 6-frame anim.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#3B82F6;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#93C5FD;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.3);"></span>
+        </div>
+      </div>
+      <div class="vfx-card">
+        <span class="vfx-spark">✨</span>
+        <div class="vfx-name" style="color:var(--epic);">Ultimate Hit</div>
+        <div class="vfx-desc">Purple-magenta explosion. Full screen desaturate → flash purple. Slow motion 0.3× for 12 frames. Debris hangs in air.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#A855F7;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--neon-pink);"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FDE68A;"></span>
+        </div>
+      </div>
+      <div class="vfx-card">
+        <span class="vfx-spark">💀</span>
+        <div class="vfx-name" style="color:#FF1744;">KO Finish</div>
+        <div class="vfx-desc">Full-screen vignette red flash. Camera shake 3 frames. Loser ragdoll + dust cloud. Time slows to 0.1× for K.O. text entrance.</div>
+        <div style="margin-top:12px;display:flex;gap:6px;justify-content:center;">
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF1744;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF6B1A;"></span>
+          <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#FFD600;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SCREEN LAYOUTS -->
+  <section id="screens">
+    <div class="section-tag">Screen Layouts</div>
+    <h2>Mobile Screen References</h2>
+    <p class="section-desc">All primary screens follow a consistent structure: header with avatar + currency, scrollable content zone, sticky bottom navigation.</p>
+
+    <div class="screens-row">
+      <!-- Home -->
+      <div class="screen-frame">
+        <div class="screen-notch"></div>
+        <div class="screen-status"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <div style="font-size:10px;font-weight:700;color:var(--text-primary);">Hey, RapKing 👋</div>
+            <div style="background:var(--bg-elevated);border-radius:100px;padding:3px 8px;font-size:9px;color:var(--gold);font-weight:700;">💰 4,200</div>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--brand-purple),#5B1FBF);border-radius:12px;padding:12px;margin-bottom:6px;">
+            <div style="font-size:10px;font-weight:700;margin-bottom:4px;">DAILY CHALLENGE</div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.7);">Win 3 ranked matches</div>
+            <div class="health-bar-track" style="margin-top:8px;height:5px;"><div class="health-bar-fill" style="width:33%;background:rgba(255,255,255,0.8);height:100%;border-radius:3px;"></div></div>
+          </div>
+          <div class="screen-card-mini">
+            <div class="screen-card-title">🏆 Ranked Season 3</div>
+            <div class="screen-card-sub">Gold II — 1,240 ELO</div>
+          </div>
+          <div class="screen-card-mini">
+            <div class="screen-card-title">⚡ Quick Match</div>
+            <div class="screen-card-sub">~12s avg wait time</div>
+          </div>
+          <div class="screen-card-mini">
+            <div class="screen-card-title">🎁 Daily Reward</div>
+            <div class="screen-card-sub" style="color:var(--neon-cyan);">CLAIM NOW →</div>
+          </div>
+        </div>
+        <div class="screen-bottom-nav">
+          <div class="nav-tab active">🏠</div>
+          <div class="nav-tab inactive">⚔️</div>
+          <div class="nav-tab inactive">👤</div>
+          <div class="nav-tab inactive">🛒</div>
+        </div>
+      </div>
+
+      <!-- Roster -->
+      <div class="screen-frame">
+        <div class="screen-notch"></div>
+        <div class="screen-status"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+          <div class="screen-title">MY FIGHTERS</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:var(--bg-card);border-radius:10px;padding:10px;border:1px solid rgba(168,85,247,0.3);text-align:center;">
+              <div style="font-size:24px;">👑</div>
+              <div style="font-size:10px;font-weight:700;margin-top:4px;">Crown Holder</div>
+              <span class="rarity-tag rarity-epic" style="font-size:8px;padding:2px 6px;"><span class="rarity-dot"></span>Epic</span>
+            </div>
+            <div style="background:var(--bg-card);border-radius:10px;padding:10px;border:1px solid rgba(249,115,22,0.4);text-align:center;">
+              <div style="font-size:24px;">🔥</div>
+              <div style="font-size:10px;font-weight:700;margin-top:4px;">Inferno Rex</div>
+              <span class="rarity-tag rarity-legendary" style="font-size:8px;padding:2px 6px;"><span class="rarity-dot"></span>Legendary</span>
+            </div>
+            <div style="background:var(--bg-card);border-radius:10px;padding:10px;border:1px solid rgba(59,130,246,0.2);text-align:center;">
+              <div style="font-size:24px;">🎤</div>
+              <div style="font-size:10px;font-weight:700;margin-top:4px;">Mic Drop</div>
+              <span class="rarity-tag rarity-rare" style="font-size:8px;padding:2px 6px;"><span class="rarity-dot"></span>Rare</span>
+            </div>
+            <div style="background:var(--bg-elevated);border-radius:10px;padding:10px;text-align:center;border:1px dashed var(--border-subtle);">
+              <div style="font-size:24px;opacity:0.4;">+</div>
+              <div style="font-size:9px;color:var(--text-muted);margin-top:4px;">Unlock More</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-bottom-nav">
+          <div class="nav-tab inactive">🏠</div>
+          <div class="nav-tab active">⚔️</div>
+          <div class="nav-tab inactive">👤</div>
+          <div class="nav-tab inactive">🛒</div>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div class="screen-frame">
+        <div class="screen-notch"></div>
+        <div class="screen-status"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div class="screen-title" style="margin:0;">SHOP</div>
+            <div style="font-size:9px;color:var(--cta-orange);font-weight:700;">💰 4,200</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#FF6B1A,#FF2D9B);border-radius:12px;padding:12px;margin-bottom:6px;">
+            <div style="font-size:9px;font-weight:700;margin-bottom:2px;">LIMITED OFFER</div>
+            <div style="font-size:11px;font-weight:700;">Mythic Pack × 3</div>
+            <div style="font-size:8px;opacity:0.8;margin-top:2px;">Ends in 11:42:30</div>
+            <div style="margin-top:8px;background:rgba(255,255,255,0.2);border-radius:6px;padding:5px 10px;font-size:9px;font-weight:700;text-align:center;">BUY — $4.99</div>
+          </div>
+          <div class="screen-card-mini" style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div class="screen-card-title">Starter Pack</div>
+              <div class="screen-card-sub">3 Rare fighters + 1000 coins</div>
+            </div>
+            <div style="font-size:9px;font-weight:700;color:var(--cta-orange);">$0.99</div>
+          </div>
+          <div class="screen-card-mini" style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div class="screen-card-title">Coin Bundle</div>
+              <div class="screen-card-sub">5,000 coins</div>
+            </div>
+            <div style="font-size:9px;font-weight:700;color:var(--cta-orange);">$1.99</div>
+          </div>
+        </div>
+        <div class="screen-bottom-nav">
+          <div class="nav-tab inactive">🏠</div>
+          <div class="nav-tab inactive">⚔️</div>
+          <div class="nav-tab inactive">👤</div>
+          <div class="nav-tab active">🛒</div>
+        </div>
+      </div>
+
+      <!-- Match Result -->
+      <div class="screen-frame">
+        <div class="screen-notch"></div>
+        <div class="screen-status"><span>9:41</span><span>●●●</span></div>
+        <div class="screen-content" style="justify-content:center;align-items:center;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:#00FF87;margin-bottom:4px;">VICTORY!</div>
+          <div style="font-size:9px;color:var(--text-muted);margin-bottom:12px;letter-spacing:2px;">2-1 ROUND WIN</div>
+          <div style="background:var(--bg-card);border-radius:12px;padding:12px;width:100%;margin-bottom:8px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+              <div style="text-align:center;"><div style="font-size:16px;font-weight:700;">12</div><div style="font-size:8px;color:var(--text-muted);">COMBOS</div></div>
+              <div style="text-align:center;"><div style="font-size:16px;font-weight:700;">2:14</div><div style="font-size:8px;color:var(--text-muted);">TIME</div></div>
+              <div style="text-align:center;"><div style="font-size:16px;font-weight:700;color:var(--gold);">+80</div><div style="font-size:8px;color:var(--text-muted);">ELO</div></div>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,var(--brand-purple),#5B1FBF);border-radius:10px;padding:8px;width:100%;font-size:10px;font-weight:700;margin-bottom:6px;">REMATCH</div>
+          <div style="border:1px solid var(--border-subtle);border-radius:10px;padding:8px;width:100%;font-size:10px;font-weight:700;color:var(--text-secondary);">MAIN MENU</div>
+        </div>
+        <div class="screen-bottom-nav" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MOTION -->
+  <section id="motion">
+    <div class="section-tag">Motion Principles</div>
+    <h2>Animation & Motion</h2>
+    <p class="section-desc">Motion must be purposeful and fast. Mobile users expect instant feedback. UI transitions are snappy — content reveals are smooth.</p>
+
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Micro-interactions</h4>
+        <p>Button press: scale 0.95 on tap, spring back. Haptic feedback on primary actions. Duration: 80–120ms.</p>
+        <span class="motion-spec">cubic-bezier(0.34, 1.56, 0.64, 1)</span>
+      </div>
+      <div class="motion-card">
+        <h4>Screen Transitions</h4>
+        <p>Slide in from right for forward nav. Fade + scale 0.96→1.0 for modal open. Reverse for back. Duration: 220–280ms.</p>
+        <span class="motion-spec">ease-out · 260ms</span>
+      </div>
+      <div class="motion-card">
+        <h4>Card Reveals</h4>
+        <p>Staggered entrance: each card delays 40ms from previous. Scale 0.8→1 + fade in. Rarity glow pulses on arrival.</p>
+        <span class="motion-spec">stagger: 40ms · duration: 300ms</span>
+      </div>
+      <div class="motion-card">
+        <h4>Rarity Unlock</h4>
+        <p>Card flips face-down → face-up with glow burst. Duration scales with rarity: Common 400ms → Mythic 1200ms full ceremony.</p>
+        <span class="motion-spec">flip + particle burst · 400–1200ms</span>
+      </div>
+      <div class="motion-card">
+        <h4>Fight Announcements</h4>
+        <p>ROUND / FIGHT text: scale 2.0→1.0 with bounce, linger 1.2s, then scale 1.0→1.4 + fade out. Camera zoom subtle pulse on FIGHT.</p>
+        <span class="motion-spec">spring · scale 2→1 → fade</span>
+      </div>
+      <div class="motion-card">
+        <h4>Combo Counter</h4>
+        <p>Number pops to 1.3× scale on increment, springs back. Color shifts smoothly as tier escalates. Max combo shakes at ±3px.</p>
+        <span class="motion-spec">pop · 80ms · color lerp</span>
+      </div>
+      <div class="motion-card">
+        <h4>Hitstop (Engine)</h4>
+        <p>Normal hit: 2-frame freeze. Heavy hit: 4-frame freeze. Ultimate: 8-frame freeze + 0.3× slowmo for 12 frames after.</p>
+        <span class="motion-spec">frame-locked · 60fps base</span>
+      </div>
+      <div class="motion-card">
+        <h4>Screen Flash</h4>
+        <p>White flash on KO: 1 frame full-white → 4 frame fade. Red vignette eases in over 200ms. Never instant-off — always eased.</p>
+        <span class="motion-spec">1 frame flash · 200ms fade</span>
+      </div>
+      <div class="motion-card">
+        <h4>Loading States</h4>
+        <p>Pulsing purple ring animation (the RapLegends logo mark). Skeleton cards in neutral dark color shimmer left-to-right.</p>
+        <span class="motion-spec">shimmer · 1.2s loop · ease-in-out</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SPACING -->
+  <section>
+    <div class="section-tag">Spacing & Layout</div>
+    <h2>Spacing Scale</h2>
+    <p class="section-desc">8-point grid. All spacing values are multiples of 4px. Use the named tokens to stay consistent.</p>
+
+    <div class="spacing-row">
+      <div class="spacing-block"><div class="spacing-vis" style="height:4px;"></div><div class="spacing-label">xs</div><div class="spacing-val">4px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:8px;"></div><div class="spacing-label">sm</div><div class="spacing-val">8px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:12px;"></div><div class="spacing-label">md</div><div class="spacing-val">12px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:16px;"></div><div class="spacing-label">lg</div><div class="spacing-val">16px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:24px;"></div><div class="spacing-label">xl</div><div class="spacing-val">24px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:32px;"></div><div class="spacing-label">2xl</div><div class="spacing-val">32px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:48px;"></div><div class="spacing-label">3xl</div><div class="spacing-val">48px</div></div>
+      <div class="spacing-block"><div class="spacing-vis" style="height:64px;"></div><div class="spacing-label">4xl</div><div class="spacing-val">64px</div></div>
+    </div>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;margin-bottom:40px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;">Border Radius Scale</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;">
+        <div style="text-align:center;"><div style="width:48px;height:48px;background:var(--brand-purple);border-radius:4px;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">4px<br>Inputs</div></div>
+        <div style="text-align:center;"><div style="width:48px;height:48px;background:var(--brand-purple);border-radius:8px;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">8px<br>Chips</div></div>
+        <div style="text-align:center;"><div style="width:60px;height:48px;background:var(--brand-purple);border-radius:14px;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">14px<br>Buttons</div></div>
+        <div style="text-align:center;"><div style="width:72px;height:56px;background:var(--brand-purple);border-radius:20px;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">20px<br>Cards</div></div>
+        <div style="text-align:center;"><div style="width:80px;height:64px;background:var(--brand-purple);border-radius:28px;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">28px<br>Modals</div></div>
+        <div style="text-align:center;"><div style="width:64px;height:64px;background:var(--brand-purple);border-radius:50%;margin-bottom:8px;"></div><div style="font-size:11px;color:var(--text-muted);">50%<br>Avatars</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ICONS -->
+  <section>
+    <div class="section-tag">Icon System</div>
+    <h2>Icon Language</h2>
+    <p class="section-desc">Solid-fill icons at 24×24dp. Stroke-weight icons are NOT used — too thin for dark backgrounds at small sizes. All icons should have a subtle glow treatment on active state.</p>
+    <div class="icon-grid">
+      <div class="icon-tile"><span>⚔️</span><span>Fight</span></div>
+      <div class="icon-tile"><span>🏆</span><span>Rank</span></div>
+      <div class="icon-tile"><span>👤</span><span>Profile</span></div>
+      <div class="icon-tile"><span>🛒</span><span>Shop</span></div>
+      <div class="icon-tile"><span>🏠</span><span>Home</span></div>
+      <div class="icon-tile"><span>💰</span><span>Currency</span></div>
+      <div class="icon-tile"><span>⚡</span><span>Energy</span></div>
+      <div class="icon-tile"><span>🔥</span><span>Hot/New</span></div>
+      <div class="icon-tile"><span>🎁</span><span>Reward</span></div>
+      <div class="icon-tile"><span>🌟</span><span>Season</span></div>
+      <div class="icon-tile"><span>📊</span><span>Stats</span></div>
+      <div class="icon-tile"><span>🔔</span><span>Notify</span></div>
+      <div class="icon-tile"><span>⚙️</span><span>Settings</span></div>
+      <div class="icon-tile"><span>🎮</span><span>Practice</span></div>
+      <div class="icon-tile"><span>🌐</span><span>Region</span></div>
+      <div class="icon-tile"><span>🔒</span><span>Locked</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  RapLegends Design System · v1.0 · 2026 · Internal Use Only
+</footer>
+
+</body>
+</html>
