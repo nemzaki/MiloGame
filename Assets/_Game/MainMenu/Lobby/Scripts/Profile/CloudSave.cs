@@ -94,6 +94,9 @@ public class CloudSave : MonoBehaviour
             {
                 { KeyPlayerName,      save.playerName ?? string.Empty },
                 { KeyCash,            save.cash },
+                { KeyGems,            save.gems },
+                { KeyXp,              save.xp },
+                { KeyLevel,           save.level },
                 { KeyTotalMatches,    save.totalMatches },
                 { KeyTotalWins,       save.totalWins },
                 { KeyTotalLoses,      save.totalLoses },
@@ -167,6 +170,35 @@ public class CloudSave : MonoBehaviour
         }
     }
 
+    // Force-refreshes gem balance from cloud — call after IAP purchase resolves in Task 1.4.
+    public async Task GetGemBalance()
+    {
+        if (!IsSignedIn) return;
+        try
+        {
+            var result = await CloudSaveService.Instance.Data.Player.LoadAsync(
+                new HashSet<string> { KeyGems });
+            if (TryGet<int>(result, KeyGems, out var balance))
+            {
+                SaveDataLocal.Instance.gems = balance;
+                SaveDataLocal.Instance.SaveGame();
+            }
+        }
+        catch (CloudSaveException e)
+        {
+            Debug.LogWarning($"[CloudSave] GetGemBalance: {e.Message}");
+        }
+    }
+
+    // Client-side gem deduction for spending (cosmetics, boosts). Never used for awarding.
+    public bool SpendGems(int amount)
+    {
+        if (SaveDataLocal.Instance.gems < amount) return false;
+        SaveDataLocal.Instance.gems -= amount;
+        SaveDataLocal.Instance.SaveGame();
+        return true;
+    }
+
     // ── Merge helpers ─────────────────────────────────────────────────────────
 
     private static void MergeCoreData(Dictionary<string, Item> cloud)
@@ -176,6 +208,16 @@ public class CloudSave : MonoBehaviour
         // player_name: cloud wins — auth service is the source of truth for name
         if (TryGet<string>(cloud, KeyPlayerName, out var cloudName) && !string.IsNullOrEmpty(cloudName))
             save.playerName = cloudName;
+
+        // xp/level: take higher — progression only goes up
+        if (TryGet<int>(cloud, KeyXp, out var cloudXp))
+            save.xp = TakeHigher(save.xp, cloudXp);
+        if (TryGet<int>(cloud, KeyLevel, out var cloudLevel))
+            save.level = TakeHigher(save.level, cloudLevel);
+
+        // gems: cloud always wins — prevents client-side inflation of premium currency
+        if (TryGet<int>(cloud, KeyGems, out var cloudGems))
+            save.gems = cloudGems;
 
         // stats & currency: take higher — these counters only go up
         if (TryGet<int>(cloud, KeyCash, out var cloudCash))

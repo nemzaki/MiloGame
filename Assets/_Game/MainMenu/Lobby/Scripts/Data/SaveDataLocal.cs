@@ -33,8 +33,9 @@ public class SaveDataLocal : MonoBehaviour
     public int currentHardKickType;
     public int currentCelebrationType;
     
-    [Header("Currency")] 
+    [Header("Currency")]
     public int cash;
+    public int gems;
     
     [Header("Game")] 
     public string gameMode;
@@ -49,7 +50,11 @@ public class SaveDataLocal : MonoBehaviour
     public string showNames = "on";
     public int currentRegionIndex;
 
-    [Header("Stats")] 
+    [Header("Progression")]
+    public int xp;
+    public int level;
+
+    [Header("Stats")]
     public int totalMatches;
     public int totalWins;
     public int totalLoses;
@@ -75,6 +80,7 @@ public class SaveDataLocal : MonoBehaviour
     {
         DataSave data = new DataSave();
         data.cash = cash;
+        data.gems = gems;
         
         data.playerName = playerName;
         data.currentPlayerIndex = currentPlayerIndex;
@@ -103,6 +109,9 @@ public class SaveDataLocal : MonoBehaviour
         data.currentHardKickType = currentHardKickType;
         data.currentCelebrationType = currentCelebrationType;
         
+        data.xp = xp;
+        data.level = level;
+
         data.totalMatches = totalMatches;
         data.totalWins = totalWins;
         data.totalLoses = totalLoses;
@@ -124,6 +133,7 @@ public class SaveDataLocal : MonoBehaviour
                 DataSave data = JsonUtility.FromJson<DataSave>(File.ReadAllText(GetFilePath(dataFile)));
 
                 cash = data.cash;
+                gems = data.gems;
                 
                 playerName = data.playerName;
                 currentPlayerIndex = data.currentPlayerIndex;
@@ -152,6 +162,9 @@ public class SaveDataLocal : MonoBehaviour
                 currentHardKickType = data.currentHardKickType;
                 currentCelebrationType = data.currentCelebrationType;
                 
+                xp = data.xp;
+                level = data.level;
+
                 totalMatches = data.totalMatches;
                 totalWins = data.totalWins;
                 totalLoses = data.totalLoses;
@@ -171,6 +184,9 @@ public class SaveDataLocal : MonoBehaviour
     private void SetDefaults()
     {
         cash = 20000;
+        gems = 0;
+        xp = 0;
+        level = 1;
         playerName = null;
         currentRegionIndex = -1;
         startDefaultDataPlayer = 0;
@@ -319,6 +335,7 @@ class DataSave
     
     //Currency
     public int cash;
+    public int gems;
     
     //Player
     public string playerName;
@@ -337,6 +354,9 @@ class DataSave
     public string gameMode;
     public int mapIndex;
     
+    public int xp;
+    public int level;
+
     public int totalMatches;
     public int totalWins;
     public int totalLoses;

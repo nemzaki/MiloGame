@@ -25,6 +25,7 @@ public class PlayerMatchRewards : MonoBehaviour
     public GameObject claimRewardButton;
 
     private bool _registerMatchStat;
+    private bool _wonMatch;
     
     void Update()
     {
@@ -86,6 +87,7 @@ public class PlayerMatchRewards : MonoBehaviour
                     Debug.Log("Register new win "+SaveDataLocal.Instance.totalWins);
                 }
                 
+                _wonMatch = true;
                 _registerMatchStat = true;
             }
         }
@@ -93,7 +95,7 @@ public class PlayerMatchRewards : MonoBehaviour
         {
             winReward.SetActive(false);
             addWinReward = 0;
-            
+
             if (!_registerMatchStat)
             {
                 //Register Loss Stat
@@ -103,7 +105,7 @@ public class PlayerMatchRewards : MonoBehaviour
                     SaveDataLocal.Instance.SaveGame();
                     Debug.Log("Register new Lost "+SaveDataLocal.Instance.totalWins);
                 }
-                
+
                 _registerMatchStat = true;
             }
         }
@@ -117,6 +119,10 @@ public class PlayerMatchRewards : MonoBehaviour
         if (claimedReward) return;
         SaveDataLocal.Instance.cash += totalRewardAmount;
         SaveDataLocal.Instance.SaveGame();
+
+        if (XPManager.Instance != null && _wonMatch)
+            XPManager.Instance.AwardXP(100, "win");
+
         claimRewardButton.SetActive(false);
         claimedReward = true;
     }

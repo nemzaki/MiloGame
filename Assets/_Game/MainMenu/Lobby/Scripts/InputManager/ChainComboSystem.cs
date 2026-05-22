@@ -88,7 +88,8 @@ public class ChainComboSystem : MonoBehaviour
             }
             
             combo.OnExecute?.Invoke();
-           comboInputBuffer.Clear();
+            comboInputBuffer.Clear();
+            XPManager.Instance?.AwardXP(25, "combo");
             return true;
             
             NextCombo: ;
