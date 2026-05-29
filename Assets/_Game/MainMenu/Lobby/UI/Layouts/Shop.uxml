@@ -1,0 +1,169 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+
+    <!-- Stylesheets — order matters: tokens first, then components -->
+    <ui:Style src="../Styles/RapLegends.uss" />
+    <ui:Style src="../Styles/Shop.uss" />
+
+    <!-- ══════════════════════════════════════════════════════
+         SHOP ROOT
+         ══════════════════════════════════════════════════════ -->
+    <ui:VisualElement name="ShopRoot" class="shop-root">
+
+        <!-- ── TOP BAR ──────────────────────────────────────── -->
+        <ui:VisualElement name="TopBar" class="shop-top-bar">
+
+            <ui:Button name="BtnClose" class="rl-btn rl-btn-ghost shop-btn-close" text="✕" />
+
+            <ui:Label name="ShopTitle" class="shop-title" text="SHOP" />
+
+            <ui:VisualElement class="shop-currency-row">
+                <ui:VisualElement class="rl-currency-chip">
+                    <ui:Label name="CashLabel" class="rl-currency-value" text="$ 0" />
+                </ui:VisualElement>
+                <ui:VisualElement class="rl-currency-chip rl-currency-chip--gems">
+                    <ui:Label name="GemsLabel" class="rl-currency-value rl-currency-value--gems" text="◆ 0" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+        <!-- /TOP BAR -->
+
+        <!-- ══════════════════════════════════════════════════
+             CHARACTER PICKER SCREEN
+             Transparent center lets 3D character show through.
+             Left/right arrows flank the viewport column.
+             ══════════════════════════════════════════════════ -->
+        <ui:VisualElement name="CharacterPickerScreen" class="shop-screen">
+
+            <ui:Button name="BtnPrevChar" class="shop-picker-arrow" text="‹" />
+
+            <!-- Viewport column: transparent + info panel pinned to bottom -->
+            <ui:VisualElement name="CharPickerCenter" class="shop-picker-center">
+                <ui:VisualElement name="CharPickerInfo" class="shop-picker-info">
+                    <ui:Label name="CharacterName" class="shop-picker-name" text="FIGHTER NAME" />
+                    <ui:Label name="CharacterMeta" class="shop-picker-meta" text="CLASS · T1 COMUNE" />
+                    <ui:VisualElement class="shop-picker-actions">
+                        <ui:Button name="BtnBuyChar"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 2400" />
+                        <ui:Button name="BtnSelectChar" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                        <ui:Button name="BtnCustomizeChar" class="rl-btn rl-btn-ghost" text="CUSTOMIZE →" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Button name="BtnNextChar" class="shop-picker-arrow" text="›" />
+
+        </ui:VisualElement>
+        <!-- /CHARACTER PICKER SCREEN -->
+
+        <!-- ══════════════════════════════════════════════════
+             CUSTOMIZATION SCREEN
+             Three columns: sidebar | 3D viewport | content panel
+             Hidden by default; shown after character is selected.
+             ══════════════════════════════════════════════════ -->
+        <ui:VisualElement name="CustomizationScreen" class="shop-screen" style="display: none;">
+
+            <!-- LEFT: category nav sidebar -->
+            <ui:VisualElement name="NavSidebar" class="shop-nav-sidebar">
+                <ui:Button name="TabSkin"        class="shop-nav-tab shop-nav-tab--active" text="SKIN" />
+                <ui:Button name="TabFightStyle"  class="shop-nav-tab"                      text="FIGHT STYLE" />
+                <ui:Button name="TabIntro"       class="shop-nav-tab"                      text="INTRO TYPE" />
+                <ui:Button name="TabHardPunch"   class="shop-nav-tab"                      text="HARD PUNCH" />
+                <ui:Button name="TabHardKick"    class="shop-nav-tab"                      text="HARD KICK" />
+                <ui:Button name="TabCelebration" class="shop-nav-tab"                      text="CELEBRATION" />
+            </ui:VisualElement>
+
+            <!-- CENTER: transparent viewport — 3D model shows through -->
+            <ui:VisualElement name="CustomizationViewport" class="shop-viewport" />
+
+            <!-- RIGHT: content panel (one tab panel visible at a time) -->
+            <ui:VisualElement name="ContentPanel" class="shop-content-panel">
+
+                <!-- ── SKIN PANEL ────────────────────────── -->
+                <ui:VisualElement name="PanelSkin" class="shop-tab-panel">
+                    <ui:Label class="shop-panel-title" text="SKINS" />
+                    <ui:ScrollView name="SkinScroll" class="shop-item-scroll" mode="Vertical">
+                        <!-- name="SkinGrid" populated by ShopUIController -->
+                        <ui:VisualElement name="SkinGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuySkin"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectSkin" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ── FIGHT STYLE PANEL ─────────────────── -->
+                <ui:VisualElement name="PanelFightStyle" class="shop-tab-panel" style="display: none;">
+                    <ui:Label class="shop-panel-title" text="FIGHT STYLE" />
+                    <ui:ScrollView name="FightStyleScroll" class="shop-item-scroll" mode="Vertical">
+                        <ui:VisualElement name="FightStyleGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuyFightStyle"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectFightStyle" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ── INTRO TYPE PANEL ──────────────────── -->
+                <ui:VisualElement name="PanelIntro" class="shop-tab-panel" style="display: none;">
+                    <ui:Label class="shop-panel-title" text="INTRO TYPE" />
+                    <ui:ScrollView name="IntroScroll" class="shop-item-scroll" mode="Vertical">
+                        <ui:VisualElement name="IntroGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuyIntro"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectIntro" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ── HARD PUNCH PANEL ──────────────────── -->
+                <ui:VisualElement name="PanelHardPunch" class="shop-tab-panel" style="display: none;">
+                    <ui:Label class="shop-panel-title" text="HARD PUNCH" />
+                    <ui:ScrollView name="HardPunchScroll" class="shop-item-scroll" mode="Vertical">
+                        <ui:VisualElement name="HardPunchGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuyHardPunch"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectHardPunch" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ── HARD KICK PANEL ───────────────────── -->
+                <ui:VisualElement name="PanelHardKick" class="shop-tab-panel" style="display: none;">
+                    <ui:Label class="shop-panel-title" text="HARD KICK" />
+                    <ui:ScrollView name="HardKickScroll" class="shop-item-scroll" mode="Vertical">
+                        <ui:VisualElement name="HardKickGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuyHardKick"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectHardKick" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ── CELEBRATION PANEL ─────────────────── -->
+                <ui:VisualElement name="PanelCelebration" class="shop-tab-panel" style="display: none;">
+                    <ui:Label class="shop-panel-title" text="CELEBRATION" />
+                    <ui:ScrollView name="CelebrationScroll" class="shop-item-scroll" mode="Vertical">
+                        <ui:VisualElement name="CelebrationGrid" class="shop-item-grid" />
+                    </ui:ScrollView>
+                    <ui:VisualElement class="shop-action-bar">
+                        <ui:Button name="BtnBuyCelebration"    class="rl-btn rl-btn-primary shop-btn-buy"    text="BUY · 0" />
+                        <ui:Button name="BtnSelectCelebration" class="rl-btn rl-btn-cobalt  shop-btn-select" text="SELECT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+            <!-- /ContentPanel -->
+
+        </ui:VisualElement>
+        <!-- /CUSTOMIZATION SCREEN -->
+
+        <!-- ── BOTTOM SCREEN SWITCHER ──────────────────────── -->
+        <ui:VisualElement name="BottomNav" class="shop-bottom-nav">
+            <ui:Button name="BtnGoCharacters" class="shop-bottom-tab shop-bottom-tab--active" text="FIGHTERS" />
+            <ui:Button name="BtnGoCustomize"  class="shop-bottom-tab"                         text="CUSTOMISE" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+    <!-- /SHOP ROOT -->
+
+</ui:UXML>

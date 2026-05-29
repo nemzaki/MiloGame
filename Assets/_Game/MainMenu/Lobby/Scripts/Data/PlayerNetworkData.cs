@@ -32,11 +32,11 @@ public unsafe class PlayerNetworkData : QuantumCallbacks
 
         if (localPlayer->PlayerType == EPlayerType.Player)
         {
-            _updateCharacterVisuals.ChangeCharacter(playerData.currentPlayerIndex);
+            _updateCharacterVisuals.ChangeCharacter(playerData.currentPlayerIndex, playerData.skinIndex);
         }
         else if (localPlayer->PlayerType == EPlayerType.AI)
         {
-            _updateCharacterVisuals.ChangeCharacter(playerStat->playerSkinIndex);
+            _updateCharacterVisuals.ChangeCharacter(playerStat->playerSkinIndex, 0);
         }
     }
 }

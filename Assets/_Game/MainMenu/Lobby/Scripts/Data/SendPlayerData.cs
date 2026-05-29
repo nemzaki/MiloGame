@@ -10,6 +10,7 @@ public class SendPlayerData : MonoBehaviour
 
         lobbyConnectionHandler.runtimePlayer.nickname = SaveDataLocal.Instance.playerName;
         lobbyConnectionHandler.runtimePlayer.currentPlayerIndex = SaveDataLocal.Instance.currentPlayerIndex;
+        lobbyConnectionHandler.runtimePlayer.skinIndex = SaveDataLocal.Instance.currentSkinIndex;
         lobbyConnectionHandler.runtimePlayer.moveType = SaveDataLocal.Instance.currentMovementType;
         lobbyConnectionHandler.runtimePlayer.idleType = SaveDataLocal.Instance.currentIdleType;
         lobbyConnectionHandler.runtimePlayer.hardPunchType = SaveDataLocal.Instance.currentHardPunchType;

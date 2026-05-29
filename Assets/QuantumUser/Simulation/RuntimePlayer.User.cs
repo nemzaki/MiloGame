@@ -10,7 +10,8 @@ namespace Quantum
         public string nickname;
         public string playerPlatform;
         public int currentPlayerIndex;
-        
+        public int skinIndex;
+
         //player character entity
         [Header("Character")]
         public AssetRef<EntityPrototype> playerPrototype;
@@ -53,7 +54,8 @@ namespace Quantum
             stream.Serialize(ref playerPlatform);
             stream.Serialize(ref playerPrototype.Id);
             stream.Serialize(ref currentPlayerIndex);
-            
+            stream.Serialize(ref skinIndex);
+
             stream.Serialize(ref hardPunchType);
             stream.Serialize(ref hardKickType);
             stream.Serialize(ref celebrateType);

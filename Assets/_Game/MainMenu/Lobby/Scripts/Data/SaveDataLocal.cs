@@ -20,10 +20,11 @@ public class SaveDataLocal : MonoBehaviour
     public string appleIDToken;
     public string googleIDToken;
 
-    [Header("Player")] 
+    [Header("Player")]
     public string playerName;
     public int currentMovementType;
     public int currentPlayerIndex;
+    public int currentSkinIndex;
     public int currentHatIndex;
     public int startDefaultDataPlayer;
 
@@ -104,11 +105,12 @@ public class SaveDataLocal : MonoBehaviour
         // appleIDToken stores "linked" or "" only — never the actual Apple identity token
         data.appleIDToken = appleIDToken;
         
+        data.currentSkinIndex = currentSkinIndex;
         data.currentIdleType = currentIdleType;
         data.currentHardPunchType = currentHardPunchType;
         data.currentHardKickType = currentHardKickType;
         data.currentCelebrationType = currentCelebrationType;
-        
+
         data.xp = xp;
         data.level = level;
 
@@ -157,11 +159,12 @@ public class SaveDataLocal : MonoBehaviour
                 appleIDToken = data.appleIDToken;
                 previousAccount = data.previousAccount;
                 
+                currentSkinIndex = data.currentSkinIndex;
                 currentIdleType = data.currentIdleType;
                 currentHardPunchType = data.currentHardPunchType;
                 currentHardKickType = data.currentHardKickType;
                 currentCelebrationType = data.currentCelebrationType;
-                
+
                 xp = data.xp;
                 level = data.level;
 
@@ -190,6 +193,7 @@ public class SaveDataLocal : MonoBehaviour
         playerName = null;
         currentRegionIndex = -1;
         startDefaultDataPlayer = 0;
+        currentSkinIndex = 0;
         language = "English";
         graphics = 1;
         musicFXVolume = 1;
@@ -326,6 +330,9 @@ class DataSave
     public string previousAccount;
     // Persisted as "linked" or "" only — the actual Apple/Google identity tokens are NEVER stored on disk
     public string appleIDToken;
+
+    //Skins
+    public int currentSkinIndex;
 
     //Fight
     public int currentIdleType;

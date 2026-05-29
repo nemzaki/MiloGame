@@ -58,10 +58,6 @@ public class GameShop : MonoBehaviour
     public string[] hardKickClipName;
     public string[] celebrateClipName;
     
-    [Header("Selection Buttons")] 
-    public GameObject openPortalButton;
-    public GameObject openShopButton;
-    
     public Image[] fightStyleButtons;
     public Image[] introButtons;
     public Image[] hardPunchButtons;
@@ -219,7 +215,7 @@ public class GameShop : MonoBehaviour
     public void OpenShop()
     {
         currentCharacterIndex = SaveDataLocal.Instance.currentPlayerIndex;
-        currentHatIndex = SaveDataLocal.Instance.currentHatIndex;
+        currentHatIndex = SaveDataLocal.Instance.currentSkinIndex;
         
         normalCamera.SetActive(false);
         shopCamera.SetActive(true);
@@ -364,13 +360,13 @@ public class GameShop : MonoBehaviour
     }
     #endregion
 
-    #region ChangeHat
+    #region ChangeSkin
     public void OnNextHat()
     {
-        if (currentHatIndex < ResourceManager.Instance.playerData.player[currentCharacterIndex].hats.Length - 1)
+        if (currentHatIndex < ResourceManager.Instance.playerData.player[currentCharacterIndex].skins.Length - 1)
         {
             currentHatIndex += 1;
-            SaveDataLocal.Instance.currentHatIndex = currentHatIndex;
+            SaveDataLocal.Instance.currentSkinIndex = currentHatIndex;
             UpdateCharacterVisuals.Instance.UpdateVisuals();
             CheckEnableSelect();
         }
@@ -381,12 +377,12 @@ public class GameShop : MonoBehaviour
         if (currentHatIndex >= 1)
         {
             currentHatIndex -= 1;
-            SaveDataLocal.Instance.currentHatIndex = currentHatIndex;
+            SaveDataLocal.Instance.currentSkinIndex = currentHatIndex;
             UpdateCharacterVisuals.Instance.UpdateVisuals();
             CheckEnableSelect();
         }
     }
-    
+
     #endregion
     
     private void CheckEnableSelect()
@@ -399,9 +395,9 @@ public class GameShop : MonoBehaviour
         }
         else if(selectingHat)
         {
-            selectButton.SetActive(_playerData.player[currentCharacterIndex].hats[currentHatIndex].status == "owned");
-            buyButton.SetActive(_playerData.player[currentCharacterIndex].hats[currentHatIndex].status == "buy");
-            itemCostText.text = ResourceManager.Instance.playerData.player[currentCharacterIndex].hats[currentHatIndex].cost.ToString();
+            selectButton.SetActive(_playerData.player[currentCharacterIndex].skins[currentHatIndex].currentStatus == "owned");
+            buyButton.SetActive(_playerData.player[currentCharacterIndex].skins[currentHatIndex].currentStatus == "buy");
+            itemCostText.text = ResourceManager.Instance.playerData.player[currentCharacterIndex].skins[currentHatIndex].itemCost.ToString();
         }
         else if(selectingHardPunch)
         {
@@ -434,7 +430,7 @@ public class GameShop : MonoBehaviour
         }
         else if (selectingHat)
         {
-            SaveDataLocal.Instance.currentHatIndex = currentHatIndex;
+            SaveDataLocal.Instance.currentSkinIndex = currentHatIndex;
         }
         else if (selectingHardPunch)
         {
@@ -473,10 +469,10 @@ public class GameShop : MonoBehaviour
         }
         else if(selectingHat)
         {
-            if (_playerData.player[currentCharacterIndex].hats[currentHatIndex].cost <= SaveDataLocal.Instance.cash)
+            if (_playerData.player[currentCharacterIndex].skins[currentHatIndex].itemCost <= SaveDataLocal.Instance.cash)
             {
-                _playerData.player[currentCharacterIndex].hats[currentHatIndex].status = "owned";
-                SaveDataLocal.Instance.cash -= _playerData.player[currentCharacterIndex].hats[currentHatIndex].cost;
+                _playerData.player[currentCharacterIndex].skins[currentHatIndex].currentStatus = "owned";
+                SaveDataLocal.Instance.cash -= _playerData.player[currentCharacterIndex].skins[currentHatIndex].itemCost;
                 SaveDataLocal.Instance.SaveGame();
                 
                 buyButton.SetActive(false);

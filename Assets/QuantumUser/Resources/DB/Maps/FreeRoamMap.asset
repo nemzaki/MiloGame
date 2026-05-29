@@ -19,8 +19,8 @@ MonoBehaviour:
   UserAsset:
     Id:
       Value: 0
-  Scene: 3DSceneTest
-  ScenePath: Assets/3DSceneTest.unity
+  Scene: Map1
+  ScenePath: Assets/Files/Scenes/Map1.unity
   SceneGuid: c12866a5d28e74f02ad7f6c937751f45
   WorldSize: 256
   BucketsCount: 16
@@ -32,7 +32,7 @@ MonoBehaviour:
   TriangleMeshCellSize: -1
   StaticColliders3DTrianglesData:
     Id:
-      Value: 343729235982257462
+      Value: 507854780939047727
   SerializeTrianglesMetadata: 0
   GridSizeX: 64
   GridSizeY: 64

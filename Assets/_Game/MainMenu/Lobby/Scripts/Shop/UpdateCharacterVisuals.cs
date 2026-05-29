@@ -15,6 +15,10 @@ public class UpdateCharacterVisuals : MonoBehaviour
     [Header("Player")]
     public Transform character;
 
+    // The most recently instantiated character GameObject — used by ShopUIController
+    // to grab the Animator without risking getting a stale/pending-destroy instance.
+    [HideInInspector] public GameObject lastSpawnedCharacter;
+
     private void Awake()
     {
         Instance = this;
@@ -32,14 +36,20 @@ public class UpdateCharacterVisuals : MonoBehaviour
     
     public void UpdateVisuals()
     {
-        ChangeCharacter(SaveDataLocal.Instance.currentPlayerIndex);
+        ChangeCharacter(SaveDataLocal.Instance.currentPlayerIndex, SaveDataLocal.Instance.currentSkinIndex);
     }
-    
-    public void ChangeCharacter(int index)
+
+    public void ChangeCharacter(int index, int skinIndex = 0)
     {
         if (character == null)
         {
             Debug.LogError("Character transform is null!");
+            return;
+        }
+
+        if (_resourceManager == null)
+        {
+            Debug.LogWarning("[UpdateCharacterVisuals] ResourceManager not ready — skipping ChangeCharacter.");
             return;
         }
 
@@ -52,12 +62,24 @@ public class UpdateCharacterVisuals : MonoBehaviour
             }
         }
 
-        // SPAWN NEW CHARACTER
-        if (_resourceManager.playerData.player[index].playerObj != null)
+        // SPAWN NEW CHARACTER — use skin prefab when available, fall back to base playerObj
+        var playerItem = _resourceManager.playerData.player[index];
+        var prefabToUse = playerItem.playerObj;
+
+        if (playerItem.skins != null &&
+            skinIndex > 0 &&
+            skinIndex < playerItem.skins.Length &&
+            playerItem.skins[skinIndex].skinPrefab != null)
         {
-            var playerBody = Instantiate(_resourceManager.playerData.player[index].playerObj, character);
+            prefabToUse = playerItem.skins[skinIndex].skinPrefab;
+        }
+
+        if (prefabToUse != null)
+        {
+            var playerBody = Instantiate(prefabToUse, character);
             playerBody.transform.localPosition = Vector3.zero;
             playerBody.transform.localRotation = Quaternion.identity;
+            lastSpawnedCharacter = playerBody;
         }
         else
         {

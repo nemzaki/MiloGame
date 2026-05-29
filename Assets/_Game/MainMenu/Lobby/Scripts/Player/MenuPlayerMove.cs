@@ -24,6 +24,10 @@ public class MenuPlayerMove : MonoBehaviour
     public float distanceToEngage;
     public float portalDistance;
     public float closetDistance;
+
+    [Header("Proximity Buttons")]
+    public GameObject openPortalButton;
+    public GameObject openShopButton;
     
     private void Start()
     {
@@ -66,12 +70,16 @@ public class MenuPlayerMove : MonoBehaviour
 
     private void CheckDistance()
     {
-        portalDistance = Vector3.Distance(transform.position, portal.position);
+        if (portal != null && openPortalButton != null)
+        {
+            portalDistance = Vector3.Distance(transform.position, portal.position);
+            openPortalButton.SetActive(portalDistance < distanceToEngage);
+        }
 
-        GameShop.Instance.openPortalButton.SetActive(portalDistance < distanceToEngage);
-        
-        closetDistance = Vector3.Distance(transform.position, closet.position);
-        
-        GameShop.Instance.openShopButton.SetActive(closetDistance < distanceToEngage);
+        if (closet != null && openShopButton != null)
+        {
+            closetDistance = Vector3.Distance(transform.position, closet.position);
+            openShopButton.SetActive(closetDistance < distanceToEngage);
+        }
     }
 }

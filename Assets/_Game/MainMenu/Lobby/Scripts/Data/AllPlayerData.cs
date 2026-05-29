@@ -23,34 +23,33 @@ public class PlayerItem
     public string playerName;
     public int playerIndex;
     public int playerMovementType;
-    
-    [Header("Default Data")] 
+
+    [Header("Default Data")]
     public string defaultStatus;
-    
+
     public GameObject playerObj;
     public int cost;
     public string status;
-    
-    [Header("Hats")] 
-    public PlayerHatItem[] hats;
-    
+
+    [Header("Skins")]
+    public SkinItem[] skins;
+
     //DATA
     [Header("Load Data")]
     private List<PlayerItemData> items = new List<PlayerItemData>();
     public List<PlayerItemData> loadedItemPlayer = new List<PlayerItemData>();
-    public List<PlayerItemData> loadedItemsHat = new List<PlayerItemData>();
-    
+
     [HideInInspector]
     public string saveFilePath;
     public string saveFileName;
-    
-    
+
+
     public void Start()
     {
         saveFileName = "Player_" + playerName + "_Data.dat";
         LoadItem();
     }
-    
+
     //
     public void SaveStartData()
     {
@@ -58,7 +57,7 @@ public class PlayerItem
 
         SavePlayerItemData();
     }
-    
+
     // Save all items to file
     private void SaveData()
     {
@@ -71,38 +70,26 @@ public class PlayerItem
     {
         //GET FILE PATH
         saveFilePath = SavePlayerDataLocal.Instance.GetFilePath(saveFileName);
-        
+
         if (File.Exists(saveFilePath))
         {
             string json = File.ReadAllText(saveFilePath);
             PlayerItemDataList itemList = JsonUtility.FromJson<PlayerItemDataList>(json);
             items = itemList.items;
-            
+
             //Get Car Item
             loadedItemPlayer = GetPlayerItems();
-        
+
             //Get status
             status = loadedItemPlayer[0].itemStatus;
-            
-            //Get Wheel items
-            loadedItemsHat = GetHatItems();
         }
         else
         {
             //NO FIle found
             status = defaultStatus;
             loadedItemPlayer.Clear();
-            loadedItemsHat.Clear();
 
             SaveStartData();
-            
-            if(hats.Length == 0)
-                return;
-            
-            foreach (var hat in hats)
-            {
-                hat.status = hat.defaultStatus;
-            }
         }
     }
 
@@ -110,22 +97,17 @@ public class PlayerItem
     private void AddItem(PlayerItemData item)
     {
         items.Add(item);
-        SaveData(); 
+        SaveData();
     }
-    
+
     public void SavePlayerItemData()
     {
         //Reset list
         items.Clear();
-        
-        SaveItemData("Player", status);
 
-        for (var i = 0; i < hats.Length; i++)
-        {
-            SaveItemData("Hat", hats[i].status);
-        }
+        SaveItemData("Player", status);
     }
-    
+
     private void SaveItemData(string itemName, string itemStatus)
     {
         PlayerItemData newItem = new PlayerItemData
@@ -143,13 +125,7 @@ public class PlayerItem
     {
         return items.Where(items => items.itemName == "Player").ToList();
     }
-    
-    //Get Hat Items
-    private List<PlayerItemData> GetHatItems()
-    {
-        return items.Where(items => items.itemName == "Hat").ToList();
-    }
-    
+
     [ContextMenu("Load Data")]
     public void LoadItem()
     {
@@ -158,17 +134,13 @@ public class PlayerItem
 }
 
 [Serializable]
-public class PlayerHatItem
+public class SkinItem
 {
-    [Header("Hat Status")] 
-    public string defaultStatus;
-    
-    [Header("Hat")]
-    public int playerHatIndex;
-    public GameObject hatObj;
-
-    public int cost;
-    public string status;
+    public string displayName;
+    public GameObject skinPrefab;
+    public string defaultStatus = "buy";
+    public string currentStatus = "buy";
+    public int itemCost;
 }
 
 [System.Serializable]

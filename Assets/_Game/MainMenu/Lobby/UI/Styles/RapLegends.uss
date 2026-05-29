@@ -1,0 +1,431 @@
+/* ============================================================
+   RAP LEGENDS DESIGN SYSTEM — v1.0  (May 2026)
+   Generated from RAP_LEGENDS_DESIGN_SYSTEM.md
+   Source of truth for all runtime UI Toolkit surfaces.
+   ============================================================ */
+
+/* ────────────────────────────────────────────────────────────
+   §2  COLOR TOKENS
+   ──────────────────────────────────────────────────────────── */
+:root {
+    /* Core palette */
+    --color-ink:          rgb(11,  10,  20);
+    --color-ink-2:        rgb(20,  17,  42);
+    --color-ink-3:        rgb(31,  26,  61);
+    --color-ink-line:     rgb(42,  35,  80);
+    --color-bone:         rgb(245, 240, 225);
+    --color-bone-mute:    rgb(201, 194, 174);
+    --color-magenta:      rgb(255,  45, 122);
+    --color-magenta-deep: rgb(184,  22,  88);
+    --color-cobalt:       rgb(46,  229, 255);
+    --color-cobalt-deep:  rgb(26,  138, 168);
+    --color-plum:         rgb(107,  43, 217);
+    --color-ember:        rgb(255, 122,  45);
+
+    /* Status palette */
+    --color-lime:         rgb(182, 255,  60);
+    --color-gold:         rgb(255, 210,  63);
+    --color-siren:        rgb(255,  59,  48);
+
+    /* Rarity tiers — top / bottom / text */
+    --tier-1-top:   rgb(42,  42,  58);
+    --tier-1-bot:   rgb(26,  26,  40);
+    --tier-1-text:  rgb(181, 176, 200);
+    --tier-2-top:   rgb(0,   176, 168);
+    --tier-2-bot:   rgb(0,   107, 104);
+    --tier-2-text:  rgb(245, 240, 225);
+    --tier-3-top:   rgb(46,  229, 255);
+    --tier-3-bot:   rgb(30,  123, 216);
+    --tier-3-text:  rgb(11,  10,  20);
+    --tier-4-top:   rgb(255,  45, 122);
+    --tier-4-bot:   rgb(107,  43, 217);
+    --tier-4-text:  rgb(245, 240, 225);
+    --tier-5-top:   rgb(255, 210,  63);
+    --tier-5-bot:   rgb(255, 122,  45);
+    --tier-5-text:  rgb(11,  10,  20);
+
+    /* ──────────────────────────────────────────────────────────
+       §4  SPACING (multiples of 4px)
+       ────────────────────────────────────────────────────────── */
+    --space-1:  4px;
+    --space-2:  8px;
+    --space-3:  12px;
+    --space-4:  16px;
+    --space-6:  24px;
+    --space-8:  32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-24: 96px;
+    --space-32: 128px;
+
+    /* §4.2  Radii */
+    --radius-sharp:  0px;
+    --radius-xs:     2px;
+    --radius-s:      4px;
+    --radius-m:      8px;
+    --radius-l:      12px;
+    --radius-xl:     16px;
+
+    /* §3.2  Type sizes (1920×1080 base) */
+    --type-display-hero:   120px;
+    --type-display-title:  72px;
+    --type-display-header: 42px;
+    --type-display-button: 22px;
+    --type-graffiti-xl:    96px;
+    --type-graffiti-m:     48px;
+    --type-body-l:         36px;
+    --type-body-m:         18px;
+    --type-body-s:         14px;
+    --type-mono-m:         14px;
+    --type-mono-s:         11px;
+    --type-mono-xs:        9px;
+
+    /* §10.4  Animation durations */
+    --dur-btn-in:   80ms;
+    --dur-btn-out:  120ms;
+    --dur-modal:    240ms;
+    --dur-tab:      200ms;
+    --dur-hp:       400ms;
+}
+
+/* ────────────────────────────────────────────────────────────
+   §3  TYPOGRAPHY UTILITY CLASSES
+   Font assets live at Assets/_Game/Art/Fonts/TMP/
+   (Anton-Regular SDF, BagelFatOne-Regular SDF, SpaceGrotesk-Variable SDF, SpaceMono-Bold/Regular SDF)
+   ──────────────────────────────────────────────────────────── */
+
+/* Display / Holler — Anton, ALL CAPS */
+.rl-display-hero {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-hero);
+    -unity-text-align: middle-center;
+    color: var(--color-bone);
+    -unity-font-style: normal;
+}
+.rl-display-title {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-title);
+    -unity-text-align: middle-center;
+    color: var(--color-bone);
+}
+.rl-display-header {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-header);
+    color: var(--color-bone);
+    -unity-text-align: middle-left;
+}
+.rl-display-button {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-button);
+    color: var(--color-ink);
+    -unity-text-align: middle-center;
+}
+
+/* Graffiti — Bagel Fat One, always lowercase */
+.rl-graffiti-xl {
+    -unity-font: resource("Fonts/TMP/BagelFatOne-Regular");
+    font-size: var(--type-graffiti-xl);
+    color: var(--color-magenta);
+    -unity-text-align: middle-center;
+}
+.rl-graffiti-m {
+    -unity-font: resource("Fonts/TMP/BagelFatOne-Regular");
+    font-size: var(--type-graffiti-m);
+    color: var(--color-cobalt);
+    -unity-text-align: middle-center;
+}
+
+/* Body — Space Grotesk */
+.rl-body-l {
+    -unity-font: resource("Fonts/TMP/SpaceGrotesk-Variable");
+    font-size: var(--type-body-l);
+    color: var(--color-bone);
+}
+.rl-body-m {
+    -unity-font: resource("Fonts/TMP/SpaceGrotesk-Variable");
+    font-size: var(--type-body-m);
+    color: var(--color-bone);
+}
+.rl-body-s {
+    -unity-font: resource("Fonts/TMP/SpaceGrotesk-Variable");
+    font-size: var(--type-body-s);
+    color: var(--color-bone-mute);
+}
+
+/* Data / HUD — Space Mono, ALL CAPS */
+.rl-mono-m {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-m);
+    color: var(--color-bone);
+    letter-spacing: 1.4px;
+}
+.rl-mono-s {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Regular");
+    font-size: var(--type-mono-s);
+    color: var(--color-bone-mute);
+    letter-spacing: 1.8px;
+}
+.rl-mono-xs {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Regular");
+    font-size: var(--type-mono-xs);
+    color: var(--color-bone-mute);
+    letter-spacing: 2.0px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   §6.1  BUTTONS
+   Each btn variant: background, text, 4px hard-cut shadow
+   Shadow = second Image child offset 4px — OR use border-bottom
+   as a visual approximation for simple flat buttons.
+   ──────────────────────────────────────────────────────────── */
+
+/* Base shared spec */
+.rl-btn {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-button);
+    -unity-text-align: middle-center;
+    border-radius: var(--radius-s);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    /* hard bottom shadow via border-bottom approximation */
+    border-bottom-width: 4px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    transition: translate var(--dur-btn-in) ease-out,
+                padding-bottom var(--dur-btn-in) ease-out;
+}
+
+.rl-btn:active {
+    translate: 0 2px;
+    padding-bottom: 12px;   /* compensate for shadow shrink */
+    border-bottom-width: 2px;
+}
+
+/* btn/primary — magenta */
+.rl-btn-primary {
+    background-color: var(--color-magenta);
+    color: var(--color-ink);
+    border-color: var(--color-magenta-deep);
+}
+.rl-btn-primary:hover {
+    background-color: rgb(255, 71, 139);
+}
+
+/* btn/cobalt — cobalt */
+.rl-btn-cobalt {
+    background-color: var(--color-cobalt);
+    color: var(--color-ink);
+    border-color: var(--color-cobalt-deep);
+}
+.rl-btn-cobalt:hover {
+    background-color: rgb(80, 236, 255);
+}
+
+/* btn/gold — gradient approximated as gold flat (USS has no gradient on bg) */
+.rl-btn-gold {
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+    border-color: rgb(168, 90, 26);
+    border-bottom-width: 4px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+}
+.rl-btn-gold:hover {
+    background-color: rgb(255, 220, 90);
+}
+
+/* btn/ghost — transparent with bone border */
+.rl-btn-ghost {
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--color-bone);
+    border-color: var(--color-bone);
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+}
+.rl-btn-ghost:hover {
+    background-color: rgba(245, 240, 225, 0.08);
+}
+
+/* btn/disabled */
+.rl-btn-disabled {
+    background-color: var(--color-ink-3);
+    color: var(--color-bone-mute);
+    border-color: var(--color-ink-line);
+    opacity: 0.6;
+}
+
+/* btn/danger */
+.rl-btn-danger {
+    background-color: var(--color-siren);
+    color: var(--color-bone);
+    border-color: rgb(156, 0, 0);
+}
+
+/* ────────────────────────────────────────────────────────────
+   §6.2  CARDS
+   ──────────────────────────────────────────────────────────── */
+
+/* card/fighter  240×320 */
+.rl-card-fighter {
+    width: 240px;
+    height: 320px;
+    border-radius: var(--radius-l);
+    background-color: var(--color-ink-3);
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    padding: var(--space-4);
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* card/item  240×260 */
+.rl-card-item {
+    width: 240px;
+    height: 260px;
+    border-radius: var(--radius-m);
+    background-color: var(--color-ink-3);
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    padding: var(--space-4);
+    flex-direction: column;
+    align-items: center;
+}
+
+/* selected state (2px magenta) */
+.rl-card-item--selected,
+.rl-card-fighter--selected {
+    border-width: 2px;
+    border-color: var(--color-magenta);
+}
+
+/* locked state */
+.rl-card-item--locked,
+.rl-card-fighter--locked {
+    opacity: 0.5;
+}
+
+/* ────────────────────────────────────────────────────────────
+   §2.4  RARITY TIER BORDERS
+   Apply .rl-tier-N to any card / tile to get the tier border.
+   ──────────────────────────────────────────────────────────── */
+.rl-tier-1 { border-color: var(--tier-1-top); border-width: 2px; }
+.rl-tier-2 { border-color: var(--tier-2-top); border-width: 2px; }
+.rl-tier-3 { border-color: var(--tier-3-top); border-width: 2px; }
+.rl-tier-4 { border-color: var(--tier-4-top); border-width: 2px; }
+.rl-tier-5 { border-color: var(--tier-5-top); border-width: 2px; }
+
+/* ────────────────────────────────────────────────────────────
+   §6.3  MODAL DIALOG
+   ──────────────────────────────────────────────────────────── */
+.rl-modal {
+    width: 320px;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-ink-2);
+    border-width: 2px;
+    border-color: var(--color-ink-line);
+    padding: var(--space-6);
+    align-items: center;
+}
+.rl-modal-title {
+    background-color: var(--color-magenta);
+    border-radius: var(--radius-s);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
+    translate: 0 -20px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   §6.4  HUD ELEMENTS (for reference — not used in shop)
+   ──────────────────────────────────────────────────────────── */
+.rl-hp-bar-outer {
+    width: 220px;
+    height: 12px;
+    border-width: 2px;
+    border-color: var(--color-ink-line);
+    background-color: var(--color-ink);
+    overflow: hidden;
+    rotate: -12deg;
+}
+.rl-hp-bar-fill {
+    height: 100%;
+    background-color: var(--color-lime);
+    transition: width var(--dur-hp) ease-out;
+}
+.rl-stamina-bar-outer {
+    width: 220px;
+    height: 5px;
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    background-color: var(--color-ink);
+    rotate: -12deg;
+}
+.rl-stamina-bar-fill {
+    height: 100%;
+    background-color: var(--color-cobalt);
+}
+
+/* Currency chips (reused across screens) */
+.rl-currency-chip {
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--color-ink-3);
+    border-radius: var(--radius-s);
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+.rl-currency-chip--gems {
+    border-color: var(--color-cobalt);
+}
+.rl-currency-value {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-m);
+    color: var(--color-gold);
+    letter-spacing: 1.4px;
+}
+.rl-currency-value--gems {
+    color: var(--color-cobalt);
+}
+
+/* ────────────────────────────────────────────────────────────
+   GLOBAL RESET / UTILITY
+   ──────────────────────────────────────────────────────────── */
+.rl-full-screen {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+}
+.rl-flex-row {
+    flex-direction: row;
+    align-items: center;
+}
+.rl-flex-col {
+    flex-direction: column;
+}
+.rl-flex-1 {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.rl-spacer {
+    flex-grow: 1;
+}
+.rl-transparent {
+    background-color: rgba(0, 0, 0, 0);
+}
+.rl-divider {
+    height: 1px;
+    background-color: var(--color-ink-line);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+}

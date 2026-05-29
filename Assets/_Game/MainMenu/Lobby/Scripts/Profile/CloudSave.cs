@@ -121,6 +121,8 @@ public class CloudSave : MonoBehaviour
                 data[KeyShopData] = JsonUtility.ToJson(shopSnapshot);
             }
 
+            data[KeyOwnedCosmetics] = BuildSkinSnapshot();
+
             await CloudSaveService.Instance.Data.Player.SaveAsync(data);
         }
         catch (CloudSaveException e)
@@ -199,6 +201,58 @@ public class CloudSave : MonoBehaviour
         return true;
     }
 
+    // ── Skin ownership snapshot helpers ──────────────────────────────────────
+
+    private static string BuildSkinSnapshot()
+    {
+        var snapshot = new SkinOwnershipData();
+        var allPlayerData = UnityEngine.Object.FindObjectOfType<AllPlayerData>();
+        if (allPlayerData != null)
+        {
+            for (int ci = 0; ci < allPlayerData.player.Length; ci++)
+            {
+                var slot = new CharacterSkinSlot { characterIndex = ci };
+                var skins = allPlayerData.player[ci].skins;
+                if (skins != null)
+                {
+                    for (int si = 0; si < skins.Length; si++)
+                    {
+                        if (si == 0 || skins[si].currentStatus == "owned")
+                            slot.ownedSkins.Add(si);
+                    }
+                }
+                snapshot.characters.Add(slot);
+            }
+        }
+        return JsonUtility.ToJson(snapshot);
+    }
+
+    private static void MergeOwnedSkins(Dictionary<string, Item> cloud)
+    {
+        if (!TryGet<string>(cloud, KeyOwnedCosmetics, out var json) || string.IsNullOrEmpty(json))
+            return;
+
+        SkinOwnershipData cloudData;
+        try { cloudData = JsonUtility.FromJson<SkinOwnershipData>(json); }
+        catch { return; }
+        if (cloudData?.characters == null) return;
+
+        var allPlayerData = UnityEngine.Object.FindObjectOfType<AllPlayerData>();
+        if (allPlayerData == null) return;
+
+        foreach (var slot in cloudData.characters)
+        {
+            if (slot.characterIndex < 0 || slot.characterIndex >= allPlayerData.player.Length) continue;
+            var skins = allPlayerData.player[slot.characterIndex].skins;
+            if (skins == null) continue;
+            foreach (var si in slot.ownedSkins)
+            {
+                if (si > 0 && si < skins.Length && skins[si].currentStatus != "owned")
+                    skins[si].currentStatus = "owned";
+            }
+        }
+    }
+
     // ── Merge helpers ─────────────────────────────────────────────────────────
 
     private static void MergeCoreData(Dictionary<string, Item> cloud)
@@ -228,6 +282,9 @@ public class CloudSave : MonoBehaviour
             save.totalWins = TakeHigher(save.totalWins, cloudWins);
         if (TryGet<int>(cloud, KeyTotalLoses, out var cloudLoses))
             save.totalLoses = TakeHigher(save.totalLoses, cloudLoses);
+
+        // skin ownership: owned never reverts
+        MergeOwnedSkins(cloud);
 
         // cosmetic selections: local wins unless local is still at zero (fresh install on this device)
         if (save.currentPlayerIndex == 0 && TryGet<int>(cloud, KeyPlayerIndex, out var ci))
@@ -307,4 +364,17 @@ public class CloudSave : MonoBehaviour
         value = default;
         return false;
     }
+}
+
+[Serializable]
+class SkinOwnershipData
+{
+    public List<CharacterSkinSlot> characters = new List<CharacterSkinSlot>();
+}
+
+[Serializable]
+class CharacterSkinSlot
+{
+    public int characterIndex;
+    public List<int> ownedSkins = new List<int> { 0 };
 }

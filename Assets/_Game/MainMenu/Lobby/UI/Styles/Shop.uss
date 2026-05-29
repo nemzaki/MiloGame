@@ -1,0 +1,370 @@
+/* ============================================================
+   SHOP — Component styles
+   Depends on: RapLegends.uss (must be loaded first)
+   Option A layout: UI Toolkit overlay on 3D world-space scene.
+   The .shop-viewport areas are TRANSPARENT — 3D character shows through.
+   ============================================================ */
+
+/* ────────────────────────────────────────────────────────────
+   ROOT
+   ──────────────────────────────────────────────────────────── */
+.shop-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0);   /* root is transparent */
+}
+
+/* ────────────────────────────────────────────────────────────
+   TOP BAR
+   ──────────────────────────────────────────────────────────── */
+.shop-top-bar {
+    flex-direction: row;
+    align-items: center;
+    height: 72px;
+    background-color: rgba(11, 10, 20, 0.88);
+    border-bottom-width: 1px;
+    border-color: var(--color-ink-line);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+.shop-btn-close {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    -unity-text-align: middle-center;
+    padding: 0;
+    margin-right: var(--space-4);
+    border-radius: var(--radius-s);
+}
+
+.shop-title {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-header);
+    color: var(--color-bone);
+    -unity-text-align: middle-left;
+    flex-grow: 1;
+}
+
+.shop-currency-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Space between currency chips — margin on first chip instead of column-gap */
+.shop-currency-row .rl-currency-chip {
+    margin-right: var(--space-3);
+}
+
+/* ────────────────────────────────────────────────────────────
+   SCREEN CONTAINERS
+   ──────────────────────────────────────────────────────────── */
+.shop-screen {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: row;
+}
+
+/* The transparent viewport hole — 3D model shows through */
+.shop-viewport {
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* ────────────────────────────────────────────────────────────
+   CHARACTER PICKER SCREEN
+   Three-zone row: [arrow][transparent center + info overlay][arrow]
+   ──────────────────────────────────────────────────────────── */
+.shop-picker-arrow {
+    width: 80px;
+    align-self: center;
+    background-color: rgba(31, 26, 61, 0.85);
+    border-radius: var(--radius-m);
+    margin-left: var(--space-6);
+    margin-right: var(--space-6);
+    height: 80px;
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: 42px;
+    color: var(--color-bone);
+    -unity-text-align: middle-center;
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+
+    transition: background-color var(--dur-btn-out) ease-out;
+}
+.shop-picker-arrow:hover {
+    background-color: rgba(31, 26, 61, 1.0);
+    border-color: var(--color-magenta);
+}
+
+.shop-picker-center {
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Info panel pinned to bottom of the viewport column */
+.shop-picker-info {
+    background-color: rgba(11, 10, 20, 0.82);
+    border-top-width: 1px;
+    border-color: var(--color-ink-line);
+    padding: var(--space-6);
+    flex-direction: column;
+    align-items: center;
+}
+
+.shop-picker-name {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-header);
+    color: var(--color-bone);
+    -unity-text-align: middle-center;
+    margin-bottom: var(--space-3);
+}
+
+.shop-picker-meta {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-m);
+    color: var(--color-cobalt);
+    letter-spacing: 1.4px;
+    -unity-text-align: middle-center;
+    margin-bottom: var(--space-3);
+}
+
+.shop-picker-actions {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: var(--space-3);
+}
+
+/* Spacing between picker action buttons */
+.shop-picker-actions .rl-btn {
+    margin-right: var(--space-4);
+}
+
+/* ────────────────────────────────────────────────────────────
+   CUSTOMIZATION SCREEN
+   Three-zone row: [nav sidebar][viewport][content panel]
+   ──────────────────────────────────────────────────────────── */
+
+/* LEFT: category navigation sidebar */
+.shop-nav-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    flex-direction: column;
+    background-color: rgba(20, 17, 42, 0.95);
+    border-right-width: 1px;
+    border-color: var(--color-ink-line);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+}
+
+.shop-nav-tab {
+    height: 52px;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: 18px;
+    color: var(--color-bone-mute);
+    -unity-text-align: middle-left;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-left-width: 3px;
+    border-color: rgba(0, 0, 0, 0);
+
+    margin-bottom: var(--space-1);
+    transition: color var(--dur-tab) ease-out,
+                background-color var(--dur-tab) ease-out;
+}
+.shop-nav-tab:hover {
+    color: var(--color-bone);
+    background-color: rgba(31, 26, 61, 0.6);
+}
+.shop-nav-tab--active {
+    color: var(--color-bone);
+    background-color: rgba(31, 26, 61, 0.8);
+    border-color: var(--color-magenta);
+}
+
+/* CENTER: transparent — 3D model shows through */
+/* .shop-viewport is defined above, reused here */
+
+/* RIGHT: scrollable item content + action bar */
+.shop-content-panel {
+    width: 500px;
+    flex-shrink: 0;
+    flex-direction: column;
+    background-color: rgba(14, 11, 30, 0.95);
+    border-left-width: 1px;
+    border-color: var(--color-ink-line);
+}
+
+.shop-tab-panel {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.shop-panel-title {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-button);
+    color: var(--color-magenta);
+    letter-spacing: 0.2px;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom-width: 1px;
+    border-color: var(--color-ink-line);
+}
+
+.shop-item-scroll {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.shop-item-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--space-4);
+    align-content: flex-start;
+}
+
+/* ────────────────────────────────────────────────────────────
+   ITEM TILES
+   Smaller version of card/item, two per row in 500px panel
+   Tile width: (500 - 2×padding - gap) / 2 = (500 - 32 - 16) / 2 = 226px
+   ──────────────────────────────────────────────────────────── */
+.shop-item-tile {
+    width: 218px;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-ink-3);
+    border-radius: var(--radius-m);
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    padding: var(--space-3);
+
+    /* Replaces row-gap and column-gap on grid — margin gives spacing between tiles */
+    margin-right: var(--space-4);
+    margin-bottom: var(--space-4);
+    transition: border-color var(--dur-btn-out) ease-out,
+                background-color var(--dur-btn-out) ease-out;
+}
+.shop-item-tile:hover {
+    border-color: var(--color-cobalt);
+    background-color: rgb(35, 30, 68);
+}
+
+/* Thumbnail area — placeholder until art arrives */
+.shop-item-thumb {
+    width: 100%;
+    height: 110px;
+    background-color: var(--color-ink-2);
+    border-radius: var(--radius-s);
+    border-width: 1px;
+    border-color: var(--color-ink-line);
+    margin-bottom: var(--space-2);
+}
+
+.shop-item-name {
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: 16px;
+    color: var(--color-bone);
+    -unity-text-align: middle-center;
+    white-space: normal;
+    margin-bottom: var(--space-2);
+}
+
+.shop-item-status--owned {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-s);
+    color: var(--color-lime);
+    -unity-text-align: middle-center;
+    letter-spacing: 1.4px;
+}
+.shop-item-status--price {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-s);
+    color: var(--color-gold);
+    -unity-text-align: middle-center;
+    letter-spacing: 1.4px;
+}
+.shop-item-status--free {
+    -unity-font: resource("Fonts/TMP/SpaceMono-Bold");
+    font-size: var(--type-mono-s);
+    color: var(--color-cobalt);
+    -unity-text-align: middle-center;
+    letter-spacing: 1.4px;
+}
+
+/* Selected tile: 2px magenta border + subtle bg lift */
+.shop-item-tile--selected {
+    border-width: 2px;
+    border-color: var(--color-magenta);
+    background-color: rgb(40, 18, 35);
+}
+
+/* Owned tile: lime tint on thumb border */
+.shop-item-tile--owned .shop-item-thumb {
+    border-color: var(--color-lime);
+}
+
+/* ────────────────────────────────────────────────────────────
+   ACTION BAR (Buy / Select buttons)
+   ──────────────────────────────────────────────────────────── */
+.shop-action-bar {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    border-top-width: 1px;
+    border-color: var(--color-ink-line);
+    background-color: rgba(11, 10, 20, 0.6);
+    flex-shrink: 0;
+}
+
+.shop-btn-buy {
+    flex-grow: 1;
+    margin-right: var(--space-4);
+}
+.shop-btn-select {
+    flex-grow: 1;
+}
+
+/* ────────────────────────────────────────────────────────────
+   BOTTOM SCREEN SWITCHER
+   Tab bar at bottom for Character Picker ↔ Customization
+   ──────────────────────────────────────────────────────────── */
+.shop-bottom-nav {
+    flex-direction: row;
+    height: 60px;
+    background-color: rgba(11, 10, 20, 0.95);
+    border-top-width: 1px;
+    border-color: var(--color-ink-line);
+}
+
+.shop-bottom-tab {
+    flex-grow: 1;
+    height: 100%;
+    -unity-font: resource("Fonts/TMP/Anton-Regular");
+    font-size: var(--type-display-button);
+    -unity-text-align: middle-center;
+    color: var(--color-bone-mute);
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-top-width: 3px;
+    border-color: rgba(0, 0, 0, 0);
+
+    transition: color var(--dur-tab) ease-out;
+}
+.shop-bottom-tab:hover {
+    color: var(--color-bone);
+}
+.shop-bottom-tab--active {
+    color: var(--color-bone);
+    border-color: var(--color-magenta);
+    background-color: rgba(31, 26, 61, 0.4);
+}

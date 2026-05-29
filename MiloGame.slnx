@@ -24,5 +24,6 @@
   <Project Path="Quantum.Unity.Editor.CodeGen.csproj" />
   <Project Path="AppleAuth.Editor.csproj" />
   <Project Path="QFSW.QC.Editor.csproj" />
+  <Project Path="Tests.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>
